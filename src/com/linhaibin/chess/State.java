@@ -1,27 +1,28 @@
 package com.linhaibin.chess;
 
 import java.util.Arrays;
+import java.util.Hashtable;
 import java.util.List;
 
 public class State {
 
+	/*
+	public static final int KING_RED = 16;
+	public static final int GUARD_RED = 18;
+	public static final int MINISTER_RED = 20;
+	public static final int ROOK_RED = 22;
+	public static final int KNIGHT_RED = 24;
+	public static final int CANNON_RED = 26;
+	public static final int PAWN_RED = 31;
 	
-	public static int KING_RED = 16;
-	public static int GUARD_RED = 18;
-	public static int MINISTER_RED = 20;
-	public static int ROOK_RED = 22;
-	public static int KNIGHT_RED = 24;
-	public static int CANNON_RED = 26;
-	public static int PAWN_RED = 31;
-	
-	public static int KING_BLACK = 32;
-	public static int GUARD_BLACK = 34;
-	public static int MINISTER_BLACK = 36;
-	public static int ROOK_BLACK = 38;
-	public static int KNIGHT_BLACK = 40;
-	public static int CANNON_BLACK = 42;
-	public static int PAWN_BLACK = 47;
-	
+	public static final int KING_BLACK = 32;
+	public static final int GUARD_BLACK = 34;
+	public static final int MINISTER_BLACK = 36;
+	public static final int ROOK_BLACK = 38;
+	public static final int KNIGHT_BLACK = 40;
+	public static final int CANNON_BLACK = 42;
+	public static final int PAWN_BLACK = 47;
+	*/
 	public static List<Integer> initStateList = Arrays.asList(
 			0,0,0,     0,0,0,0,0,0,0,0,0,     0,0,0,0,
 			0,0,0,     0,0,0,0,0,0,0,0,0,     0,0,0,0,
@@ -46,14 +47,14 @@ public class State {
 	
 	
 	List<Integer> stateList;
-	
+	public static Hashtable<Integer, Boolean> stateListHashtable;
 	
 	public State() {
 		this.stateList = initStateList;
 		
 	}
 	
-	public List<Integer> getState(){
+	public List<Integer> getStateList(){
 		return this.stateList;
 	}
 	
