@@ -22,7 +22,8 @@ public class State {
 	public static final int KNIGHT_BLACK = 40;
 	public static final int CANNON_BLACK = 42;
 	public static final int PAWN_BLACK = 47;
-	*/
+
+	//For 16*16 extended board
 	public static List<Integer> initStateList = Arrays.asList(
 			0,0,0,     0,0,0,0,0,0,0,0,0,     0,0,0,0,
 			0,0,0,     0,0,0,0,0,0,0,0,0,     0,0,0,0,
@@ -43,8 +44,21 @@ public class State {
 			0,0,0,     0,0,0,0,0,0,0,0,0,     0,0,0,0,
 			0,0,0,     0,0,0,0,0,0,0,0,0,     0,0,0,0,
 			0,0,0,     0,0,0,0,0,0,0,0,0,     0,0,0,0);
+		*/
 	
-	
+	public static List<Integer> initStateList = Arrays.asList(
+
+			39,37,35,33,32,34,36,38,40,   
+			0,0,0,0,0,0,0,0,0,     
+			0,41,0,0,0,0,0,42,0,   
+			43,0,44,0,45,0,46,0,47,
+			0,0,0,0,0,0,0,0,0,     
+			
+			0,0,0,0,0,0,0,0,0,     
+			27,0,28,0,29,0,30,0,31,
+			0,25,0,0,0,0,0,26,0,    
+			0,0,0,0,0,0,0,0,0,    
+			23,21,19,17,16,18,20,22,24);
 	
 	List<Integer> stateList;
 	public static Hashtable<Integer, Boolean> stateListHashtable;
@@ -58,5 +72,8 @@ public class State {
 		return this.stateList;
 	}
 	
-
+	
+	
+	
+	
 }
