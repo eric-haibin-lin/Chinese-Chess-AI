@@ -10,6 +10,9 @@ public class Game {
 	private static final String selecttargetLocationString = "Please specify the target position... \n";
 	private static final String xyPositionString = "x(0~8), y(0~9): ";
 	
+	public static int USER_TURN = 16;
+	public static int COMP_TURN = 32;
+	
 	//game related variables
 	private State currentState;
 	
@@ -58,32 +61,16 @@ public class Game {
 	private int handleUserMove(State state, int fromX, int fromY, int toX, int toY){
 		int moveStatus = 0;
 		int fromK = Utility.getOneDimention(fromX, fromY);
-		int piece = currentState.getStateList().get(fromK);
+		Piece piece = currentState.getStateList().get(fromK);
 		StringBuffer buffer = new StringBuffer();
-		switch(piece){
-			case 16:	buffer.append("K"); break;
-			case 17:	
-			case 18:	buffer.append("A"); break;
-			case 19:	
-			case 20:	buffer.append("B"); break;
-			case 21:	
-			case 22:	buffer.append("N"); break;
-			case 23:	
-			case 24:	buffer.append("R"); break;
-			case 25:	
-			case 26:	buffer.append("C"); break;
-			case 27:	
-			case 28:
-			case 29:
-			case 30:
-			case 31:	buffer.append("P"); break;
-			case 0:		buffer.append("There's no piece."); moveStatus = MoveError.WRONG_PIECE; break;
-			default: 	buffer.append("This is not your piece."); moveStatus = MoveError.WRONG_PIECE; break;
-		}		
+		if (piece.getNumber() == 0){
+			moveStatus = MoveError.WRONG_PIECE;
+		} else if (piece.getSide() != Game.USER_TURN){
+			moveStatus = MoveError.WRONG_PIECE;
+		} else buffer.append(piece.toString());
 		state = UserMove.movePiece(state, fromX, fromY, toX, toY);
 		return moveStatus;
 	}
-	
 	
 	void printWelcome(){
 		System.out.println(
@@ -104,7 +91,6 @@ public class Game {
 	
 	//For 9*10 board
 	void printStatePlain(State state){
-		List<Integer> stateList = state.getStateList();
 		System.out.println(state.toString());
 	}
 	

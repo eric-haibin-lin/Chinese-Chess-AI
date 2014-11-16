@@ -5,15 +5,14 @@ import java.util.List;
 public class UserMove{
 
 	public UserMove() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public static State movePiece(State state, int fromX, int fromY, int toX, int toY) {
-		List<Integer> stateList = state.getStateList();
+		List<Piece> stateList = state.getStateList();
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		int toK = Utility.getOneDimention(toX, toY);
 		stateList.set(toK, stateList.get(fromK));
-		stateList.set(fromK, 0);
+		stateList.set(fromK, PieceFactory.getPiece(0));
 //		state.evaluateValue();
 		return state;
 	}

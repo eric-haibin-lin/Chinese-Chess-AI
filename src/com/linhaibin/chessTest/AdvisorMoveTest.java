@@ -36,7 +36,6 @@ public class AdvisorMoveTest {
 		int fromX = 3;
 		int fromY = 9;
 		List<State> newStateList = advisorMove.generateAllMove(state, fromX, fromY);
-		
 		Utility.debug(newStateList.toString());
 		assert(true);
 	}

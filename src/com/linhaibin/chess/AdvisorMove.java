@@ -30,15 +30,15 @@ public class AdvisorMove implements Move{
 	public List<State> generateAllMove(State state, int fromX, int fromY) {
 		
 		List<State> newStateList = new ArrayList<State>();
-		List<Integer> stateList = state.getStateList();
+		List<Piece> stateList = state.getStateList();
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		for (int i = 0; i<4; i++){
 			int toX = fromX + AdvisorDirection.get(i).x;
 			int toY = fromY + AdvisorDirection.get(i).y;
 			if (Utility.isOnBoard(toX, toY)){
 				int toK = Utility.getOneDimention(toX, toY);
-				int fromSide = stateList.get(fromK) & 16;
-				int toSide = stateList.get(toK) & 16; 
+				int fromSide = stateList.get(fromK).getSide();
+				int toSide = stateList.get(toK).getSide();
 				if (AdvisorPosition.get(toK).equals(1) && (fromSide != toSide)){
 					//Legal move
 					Utility.debug("Legal move");

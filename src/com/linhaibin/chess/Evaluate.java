@@ -61,6 +61,18 @@ public class Evaluate {
 			170,180,170,190,250,190,170,180,170,   
 			160,170,160,150,150,150,160,170,160);
 	
+	public static final List<Integer> redAdvisorPositionValue = Arrays.asList(null);
+	public static final List<Integer> blackAdvisorPositionValue = Arrays.asList(null);
+	public static final List<Integer> redBishopPositionValue = Arrays.asList(null);
+	public static final List<Integer> blackBishopPositionValue = Arrays.asList(null);
+	public static final List<Integer> redKnightPositionValue = Arrays.asList(null);
+	public static final List<Integer> blackKnightPositionValue = Arrays.asList(null);
+	public static final List<Integer> redPondPositionValue = Arrays.asList(null);
+	public static final List<Integer> blackPondPositionValue = Arrays.asList(null);
+	public static final List<Integer> redCannonPositionValue = Arrays.asList(null);
+	public static final List<Integer> blackCannonPositionValue = Arrays.asList(null);
+	
+	
 	public static int evaluateState(State state){
 		int value = 0;
 		value += evaluateStatic(state);
@@ -70,69 +82,13 @@ public class Evaluate {
 	
 	private static int evaluateStatic(State state){
 		int staticValue = 0;
-		List<Integer> stateList = state.getStateList();
+		List<Piece> stateList = state.getStateList();
 		
 		for (int y = 0; y <= 9; y++){			
 			for (int x = 0; x <= 8; x++){
 				int k = y * 9 + x;
-				int piece = stateList.get(k);
-				int side = piece & 16;
-				if (side == 16){
-					switch(piece){
-						case 16:	staticValue +=  redKingPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;
-						case 17:	
-						case 18:	staticValue +=  redRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("A"); break;
-						case 19:	
-						case 20:	staticValue +=  redRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("B"); break;
-						case 21:	
-						case 22:	staticValue +=  redRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("N"); break;
-						case 23:	
-						case 24:	staticValue +=  redRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("R"); break;
-						case 25:	
-						case 26:	staticValue +=  redRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("C"); break;
-						case 27:	
-						case 28:
-						case 29:
-						case 30:
-						case 31:	staticValue +=  redRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("P"); break;
-						default: 	break;
-					}
-				}
-				else {
-					switch(piece-16){
-						case 16:	staticValue -=  blackKingPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;
-						case 17:	
-						case 18:	staticValue -=  blackRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("A"); break;
-						case 19:	
-						case 20:	staticValue -=  blackRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("B"); break;
-						case 21:	
-						case 22:	staticValue -=  blackRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("N"); break;
-						case 23:	
-						case 24:	staticValue -=  blackRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("R"); break;
-						case 25:	
-						case 26:	staticValue -=  blackRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("C"); break;
-						case 27:	
-						case 28:
-						case 29:
-						case 30:
-						case 31:	staticValue -=  blackRookPositionValue.get(Utility.getOneDimention(x, y)); 
-									break;//buffer.append("P"); break;
-						default: 	break;
-				}
-			}
+				Piece piece = stateList.get(k);
+				staticValue += piece.evaluateStatic(k);
 			}
 		}
 		return staticValue;
@@ -141,9 +97,5 @@ public class Evaluate {
 	private static int evaluateMobility(State state){
 		return 0;
 	}
-	
-	
-	
-	
 	
 }

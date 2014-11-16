@@ -2,6 +2,7 @@ package com.linhaibin.chess;
 
 import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
 
 public class State {
@@ -46,8 +47,7 @@ public class State {
 			0,0,0,     0,0,0,0,0,0,0,0,0,     0,0,0,0);
 		*/
 	
-	public static List<Integer> initStateList = Arrays.asList(
-
+	public static List<Integer> initIntList = Arrays.asList(
 			39,37,35,33,32,34,36,38,40,   
 			0,0,0,0,0,0,0,0,0,     
 			0,41,0,0,0,0,0,42,0,   
@@ -59,20 +59,36 @@ public class State {
 			0,25,0,0,0,0,0,26,0,    
 			0,0,0,0,0,0,0,0,0,    
 			23,21,19,17,16,18,20,22,24);
+	
+	
 	private static final String riverString = "\t==================================================================\n";
 	private static final String coordinateXString = "y \\ x\t0\t1\t2\t3\t4\t5\t6\t7\t8\t\n";
-	
-	
-	List<Integer> stateList;
-	private int value;
 	public static Hashtable<Integer, Boolean> stateListHashtable;
+	public static List<Piece> initStateList;
+	
+	
+	List<Piece> stateList;
+	private int value;
+	
+	
+	public static void initializePieceStateList(){
+		Iterator<Integer> iterator = initIntList.iterator();
+		while(iterator.hasNext()){
+			Piece piece = PieceFactory.getPiece(iterator.next());
+			initStateList.add(piece);
+		}
+		return;
+	}
 	
 	public State() {
-		this.stateList = initStateList;
 		value = Evaluate.evaluateState(this);
 	}
 	
-	public List<Integer> getStateList(){
+	public void initState(){
+		this.stateList = initStateList;
+	}
+	
+	public List<Piece> getStateList(){
 		return this.stateList;
 	}
 	
@@ -94,47 +110,8 @@ public class State {
 			
 			for (int x = 3; x <= 11; x++){
 				int k = x + (y << 4) ;
-				int piece = stateList.get(k);
-				int side = piece & 16;
-				if (side == 16)
-					switch(piece){
-						case 16:	buffer.append("K"); break;
-						case 17:	
-						case 18:	buffer.append("A"); break;
-						case 19:	
-						case 20:	buffer.append("B"); break;
-						case 21:	
-						case 22:	buffer.append("N"); break;
-						case 23:	
-						case 24:	buffer.append("R"); break;
-						case 25:	
-						case 26:	buffer.append("C"); break;
-						case 27:	
-						case 28:
-						case 29:
-						case 30:
-						case 31:	buffer.append("P"); break;
-						default: 	buffer.append("0"); 
-					}
-				else switch(piece-16){
-					case 16:	buffer.append("k"); break;
-					case 17:	
-					case 18:	buffer.append("a"); break;
-					case 19:	
-					case 20:	buffer.append("b"); break;
-					case 21:	
-					case 22:	buffer.append("n"); break;
-					case 23:	
-					case 24:	buffer.append("r"); break;
-					case 25:	
-					case 26:	buffer.append("c"); break;
-					case 27:	
-					case 28:
-					case 29:
-					case 30:
-					case 31:	buffer.append("p"); break;
-					default: 	buffer.append("0"); 
-				}
+				Piece piece = stateList.get(k);
+				buffer.append(piece.toString());
 				buffer.append("\t");
 			}
 			buffer.append((y == 7) ? ("\n" + riverString) : "\n");
@@ -151,54 +128,12 @@ public class State {
 			buffer.append(String.valueOf(y) + " ||\t");
 			for (int x = 0; x <= 8; x++){
 				int k = y * 9 + x;
-				int piece = stateList.get(k);
-				int side = piece & 16;
-				if (side == 16)
-					switch(piece){
-						case 16:	buffer.append("K"); break;
-						case 17:	
-						case 18:	buffer.append("A"); break;
-						case 19:	
-						case 20:	buffer.append("B"); break;
-						case 21:	
-						case 22:	buffer.append("N"); break;
-						case 23:	
-						case 24:	buffer.append("R"); break;
-						case 25:	
-						case 26:	buffer.append("C"); break;
-						case 27:	
-						case 28:
-						case 29:
-						case 30:
-						case 31:	buffer.append("P"); break;
-						default: 	buffer.append("0"); 
-					}
-				else switch(piece-16){
-					case 16:	buffer.append("k"); break;
-					case 17:	
-					case 18:	buffer.append("a"); break;
-					case 19:	
-					case 20:	buffer.append("b"); break;
-					case 21:	
-					case 22:	buffer.append("n"); break;
-					case 23:	
-					case 24:	buffer.append("r"); break;
-					case 25:	
-					case 26:	buffer.append("c"); break;
-					case 27:	
-					case 28:
-					case 29:
-					case 30:
-					case 31:	buffer.append("p"); break;
-					default: 	buffer.append("0"); 
-				}
+				Piece piece = stateList.get(k);
+				buffer.append(piece.toString());
 				buffer.append("\t");
 			}
 			buffer.append((y == 4) ? ("\n" + riverString) : "\n");
 		}
 		return(buffer.toString());
 	}
-	
-	
-	
 }
