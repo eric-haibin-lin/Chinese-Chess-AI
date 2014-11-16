@@ -28,4 +28,6 @@ public class AdvisorMoveTest {
 		advisorMove.generateAllMove(state, fromX, fromY);
 		assert(true);
 	}
+	
+	
 }
