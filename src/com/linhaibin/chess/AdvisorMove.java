@@ -1,5 +1,6 @@
 package com.linhaibin.chess;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,7 +27,9 @@ public class AdvisorMove implements Move{
 	private static List<DirectionMove> AdvisorDirection = Arrays.asList(new DirectionMove(-1,-1), new DirectionMove(-1,+1), new DirectionMove(+1,-1), new DirectionMove(+1,+1));
 	
 	@Override
-	public void generateAllMove(State state, int fromX, int fromY) {
+	public List<State> generateAllMove(State state, int fromX, int fromY) {
+		
+		List<State> newStateList = new ArrayList<State>();
 		List<Integer> stateList = state.getStateList();
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		for (int i = 0; i<4; i++){
@@ -41,9 +44,12 @@ public class AdvisorMove implements Move{
 					Utility.debug("Legal move");
 					Utility.debug(i);
 					Utility.debug("\n");
+					State newState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+					newStateList.add(newState);
 				}	
 			}	
-		}	
+		}
+		return newStateList;	
 	}
 	
 }

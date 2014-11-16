@@ -2,6 +2,8 @@ package com.linhaibin.chessTest;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,5 +31,28 @@ public class AdvisorMoveTest {
 		assert(true);
 	}
 	
+	@Test
+	public void testGenerateAllSimple() {
+		int fromX = 3;
+		int fromY = 9;
+		List<State> newStateList = advisorMove.generateAllMove(state, fromX, fromY);
+		
+		Utility.debug(newStateList.toString());
+		assert(true);
+	}
+
+	@Test
+	public void testGenerateAllMid() {
+		int fromX = 3;
+		int fromY = 9;
+		int toX = 4;
+		int toY = 8;
+		
+		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		List<State> newStateList = advisorMove.generateAllMove(midState, toX, toY);
+		
+		Utility.debug(newStateList.toString());
+		assert(true);
+	}
 	
 }

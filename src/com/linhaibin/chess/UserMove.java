@@ -14,6 +14,7 @@ public class UserMove{
 		int toK = Utility.getOneDimention(toX, toY);
 		stateList.set(toK, stateList.get(fromK));
 		stateList.set(fromK, 0);
+//		state.evaluateValue();
 		return state;
 	}
 

@@ -24,9 +24,8 @@ public class EvaluateTest {
 	}
 
 	@Test
-	public void test() {
+	public void testInitValue() {
 		int value = Evaluate.evaluateState(currentState);	
-		Utility.debug(value);
 		assertEquals(value, 0);
 	}
 	
@@ -45,8 +44,6 @@ public class EvaluateTest {
 				}
 			}
 		}
-//		Utility.debug("Number of inconsistent Rook value");
-//		Utility.debug(count);
 		assertEquals(0, 0);
 	}
 	
