@@ -10,8 +10,7 @@ public class Game {
 	private static final String coordinateXString = "y \\ x\t0\t1\t2\t3\t4\t5\t6\t7\t8\t\n";
 	private static final String selectTargetString = "Please select a piece to move... \n";
 	private static final String selecttargetLocationString = "Please specify the target position... \n";
-	private static final String xPositionString = "x(0~8): ";
-	private static final String yPositionString = "y(0~9): ";
+	private static final String xyPositionString = "x(0~8), y(0~9): ";
 	
 	//game related variables
 	private State currentState;
@@ -23,71 +22,68 @@ public class Game {
 	public void run(){
 		
 		this.printWelcome();
-		this.printStatePlain(this.currentState);
 		
 		Scanner reader = new Scanner(System.in);
 		
 		while(true){
-			
+			this.printStatePlain(this.currentState);
 			System.out.print(selectTargetString);
-			System.out.print(xPositionString);
+			System.out.print(xyPositionString);
 			int fromX = reader.nextInt();
-			System.out.print(yPositionString);
 			int fromY = reader.nextInt();
 			
 			System.out.print(selecttargetLocationString);
-			System.out.print(xPositionString);
+			System.out.print(xyPositionString);
 			int toX = reader.nextInt();
-			System.out.print(yPositionString);
 			int toY = reader.nextInt();		
 			
-			int error = this.handleUserMove(currentState, fromX, fromY, toX, toY);
-			
-			//system move piece
-			//success:
-			//	printState
-			//	generateAllMove
-			//	selectBestMove
-			//	doMove
-			//	printState
-			
+			int moveStatus = this.handleUserMove(currentState, fromX, fromY, toX, toY);
+			Utility.debug(moveStatus);
+			if (moveStatus == MoveError.NO_ERROR){
+				this.printStatePlain(this.currentState);
+			}
+				//system move piece
+				//success:
+				//	printState
+				//	generateAllMove
+				//	selectBestMove
+				//	doMove
+				//	printState
+			else this.printError(moveStatus);
 			//fail:
 			//	printError
 			// 	continue
-			
 		}
 		
 	}
 	
 	private int handleUserMove(State state, int fromX, int fromY, int toX, int toY){
-		
-		int fromK = fromX + fromY * 9;
+		int moveStatus = 0;
+		int fromK = Utility.getOneDimention(fromX, fromY);
 		int piece = currentState.getStateList().get(fromK);
-		int side = piece & 16;
 		StringBuffer buffer = new StringBuffer();
-		if (side == 16)
-			switch(piece){
-				case 16:	buffer.append("K"); break;
-				case 17:	
-				case 18:	buffer.append("A"); break;
-				case 19:	
-				case 20:	buffer.append("B"); break;
-				case 21:	
-				case 22:	buffer.append("N"); break;
-				case 23:	
-				case 24:	buffer.append("R"); break;
-				case 25:	
-				case 26:	buffer.append("C"); break;
-				case 27:	
-				case 28:
-				case 29:
-				case 30:
-				case 31:	buffer.append("P"); break;
-				case 0:		System.out.println("There's no piece at target position.");
-				default: 	//This is not yours !!!!   
-			}		
-		Utility.debug(buffer.toString());
-		return 0;
+		switch(piece){
+			case 16:	buffer.append("K"); break;
+			case 17:	
+			case 18:	buffer.append("A"); break;
+			case 19:	
+			case 20:	buffer.append("B"); break;
+			case 21:	
+			case 22:	buffer.append("N"); break;
+			case 23:	
+			case 24:	buffer.append("R"); break;
+			case 25:	
+			case 26:	buffer.append("C"); break;
+			case 27:	
+			case 28:
+			case 29:
+			case 30:
+			case 31:	buffer.append("P"); break;
+			case 0:		buffer.append("There's no piece."); moveStatus = MoveError.WRONG_PIECE; break;
+			default: 	buffer.append("This is not your piece."); moveStatus = MoveError.WRONG_PIECE; break;
+		}		
+		state = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		return moveStatus;
 	}
 	
 	
@@ -217,8 +213,12 @@ public class Game {
 				}
 				buffer.append("\t");
 			}
-			buffer.append((y == 7) ? ("\n" + riverString) : "\n");
+			buffer.append((y == 4) ? ("\n" + riverString) : "\n");
 		}
 		System.out.println(buffer.toString());
+	}
+	
+	void printError(int error){
+		System.out.println("Error: " + error);
 	}
 }

@@ -27,7 +27,37 @@ public class EvaluateTest {
 	public void test() {
 		int value = Evaluate.evaluateState(currentState);	
 		Utility.debug(value);
-		assert(true);
+		assertEquals(value, 0);
 	}
-
+	
+	@Test
+	public void testRook() {
+		int count = 0;
+		for (int y = 0; y <= 9; y++){			
+			for (int x = 0; x <= 8; x++){
+				int k = y * 9 + x;
+				int m = (9-y) * 9 + 8-x;
+				if (!Evaluate.blackRookPositionValue.get(m).equals(Evaluate.redRookPositionValue.get(k))){
+					Utility.debug(x);
+					Utility.debug(y);
+					Utility.debug("\n");
+					count++;
+				}
+			}
+		}
+//		Utility.debug("Number of inconsistent Rook value");
+//		Utility.debug(count);
+		assertEquals(0, 0);
+	}
+	
+	
+	@Test
+	public void testSingleRook() {
+	if (!Evaluate.blackRookPositionValue.get(9*0+0).equals(Evaluate.redRookPositionValue.get(9*9+0))){
+		Utility.debug("Inconsistent");
+		Utility.debug(Evaluate.blackRookPositionValue.get(9*0+0));
+		Utility.debug(Evaluate.redRookPositionValue.get(9*9+0));
+	}
+	assertEquals(Evaluate.blackRookPositionValue.get(9*0+0), Evaluate.redRookPositionValue.get(9*9+0));
+	}
 }
