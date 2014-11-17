@@ -55,7 +55,6 @@ public class Game {
 			//	printError
 			// 	continue
 		}
-		
 	}
 	
 	private int handleUserMove(State state, int fromX, int fromY, int toX, int toY){
@@ -68,13 +67,14 @@ public class Game {
 		} else if (piece.getSide() != Game.USER_TURN){
 			moveStatus = MoveError.WRONG_PIECE;
 		} else buffer.append(piece.toString());
-		state = UserMove.movePiece(state, fromX, fromY, toX, toY);
+//		state = 
+				UserMove.movePiece(state, fromX, fromY, toX, toY);
 		return moveStatus;
 	}
 	
 	void printWelcome(){
 		System.out.println(
-				"Welcome to Eric's Chinese Chess. \n" + 
+				"Welcome to Eric Haibin Lin's Chinese Chess. \n" + 
 				"K => King,\t" + 
 				"A => Advisor,\t" + 
 				"B => Bishop,\t" + 

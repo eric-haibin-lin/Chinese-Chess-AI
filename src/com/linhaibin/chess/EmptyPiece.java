@@ -1,5 +1,7 @@
 package com.linhaibin.chess;
 
+import java.util.List;
+
 public class EmptyPiece extends AbstractPiece implements Piece {
 
 	public EmptyPiece(int number) {
@@ -15,4 +17,5 @@ public class EmptyPiece extends AbstractPiece implements Piece {
 	public int evaluateStatic(int k){
 		return 0;
 	}
+
 }

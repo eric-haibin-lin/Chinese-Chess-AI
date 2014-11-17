@@ -1,8 +1,12 @@
 package com.linhaibin.chess;
 
-public interface Piece {
+import java.util.List;
+
+public interface Piece{
 	public int getNumber();
 	public String toString();
 	public int getSide();
 	public int evaluateStatic(int k);
+	public List<State> generateAllMove(State state, int fromX, int fromY);
+	public Object clone();
 }

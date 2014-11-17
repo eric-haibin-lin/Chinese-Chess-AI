@@ -1,6 +1,8 @@
 package com.linhaibin.chess;
 
-public class AbstractPiece implements Piece{
+import java.util.List;
+
+public class AbstractPiece implements Cloneable{
 
 	int number;
 	int side;
@@ -10,19 +12,33 @@ public class AbstractPiece implements Piece{
 		this.side = number & Game.USER_TURN; 
 	}
 	
-	@Override
 	public int getNumber() {
 		return this.number;
 	}
 
-	@Override
+	
 	public int getSide() {
 		return this.side;
 	}
 
-	@Override
+	
 	public int evaluateStatic(int k) {
 		return 0;
 	}
+
+	public List<State> generateAllMove(State state, int fromX, int fromY) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
+	@Override
+	public Object clone(){
+		Object returnObj = null;
+		try {
+			returnObj = super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return returnObj;
+	}
 }

@@ -6,7 +6,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
-public class State {
+public class State implements Cloneable{
 	
 	/*
 	public static final int KING_RED = 16;
@@ -66,7 +66,7 @@ public class State {
 	private static final String coordinateXString = "y \\ x\t0\t1\t2\t3\t4\t5\t6\t7\t8\t\n";
 	public static Hashtable<Integer, Boolean> stateListHashtable;
 	public static List<Piece> initStateList = new ArrayList<Piece>();
-	
+	public static boolean PRINT_NUM = true;
 	
 	List<Piece> stateList;
 	private int value;
@@ -114,12 +114,19 @@ public class State {
 			for (int x = 3; x <= 11; x++){
 				int k = x + (y << 4) ;
 				Piece piece = stateList.get(k);
-				buffer.append(piece.toString());
+				String pieceString;
+				if (State.PRINT_NUM) pieceString = String.valueOf(piece.getNumber());
+				else pieceString = piece.toString();
+				buffer.append(pieceString);
 				buffer.append("\t");
 			}
 			buffer.append((y == 7) ? ("\n" + riverString) : "\n");
 		}
 		return (buffer.toString());
+	}
+	
+	public void setStateList(List<Piece> stateList){
+		this.stateList = stateList;
 	}
 	
 	public String toString(){
@@ -132,11 +139,29 @@ public class State {
 			for (int x = 0; x <= 8; x++){
 				int k = y * 9 + x;
 				Piece piece = stateList.get(k);
-				buffer.append(piece.toString());
+				String pieceString;
+				if (State.PRINT_NUM) pieceString = String.valueOf(piece.getNumber());
+				else pieceString = piece.toString();
+				buffer.append(pieceString);
 				buffer.append("\t");
 			}
 			buffer.append((y == 4) ? ("\n" + riverString) : "\n");
 		}
 		return(buffer.toString());
+	}
+	
+	private List<Piece> clonePieceList(){
+		List<Piece> list = new ArrayList<Piece>();
+		for(Piece piece : this.stateList){
+			list.add((Piece) piece.clone());
+		}
+		return list;	
+	}
+	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		State returnState =  (State) super.clone();
+		returnState.setStateList(this.clonePieceList());
+		return returnState;
 	}
 }
