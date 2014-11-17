@@ -1,7 +1,28 @@
 package com.linhaibin.chess;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class BishopPiece extends AbstractPiece implements Piece {
 
+	private static boolean DEBUG_PRINT = false;
+	private static List<Integer> LegalPosition = Arrays.asList(
+			0,0,1,0,0,0,1,0,0,   
+			0,0,0,0,0,0,0,0,0,     
+			1,0,0,0,1,0,0,0,1,   
+			0,0,0,0,0,0,0,0,0,
+			0,0,1,0,0,0,1,0,0,     
+			
+			0,0,1,0,0,0,1,0,0,   
+			0,0,0,0,0,0,0,0,0,     
+			1,0,0,0,1,0,0,0,1,   
+			0,0,0,0,0,0,0,0,0,
+			0,0,1,0,0,0,1,0,0);
+	
+	private static List<DirectionMove> moveDirection = Arrays.asList(new DirectionMove(-2,-2), new DirectionMove(-2,+2), new DirectionMove(+2,-2), new DirectionMove(+2,+2));
+
+	
 	public BishopPiece(int number) {
 		super(number);
 	}
@@ -18,4 +39,31 @@ public class BishopPiece extends AbstractPiece implements Piece {
 		return value;
 	}
 	
+	@Override
+	public List<State> generateAllMove(State state, int fromX, int fromY) {
+		
+		List<State> newStateList = new ArrayList<State>();
+		List<Piece> stateList = state.getStateList();
+		int fromK = Utility.getOneDimention(fromX, fromY);
+		for (int i = 0; i<4; i++){
+			int toX = fromX + moveDirection.get(i).x;
+			int toY = fromY + moveDirection.get(i).y;
+			if (Utility.isOnBoard(toX, toY)){
+				int toK = Utility.getOneDimention(toX, toY);
+				int fromSide = stateList.get(fromK).getSide();
+				int toSide = stateList.get(toK).getSide();
+				if (LegalPosition.get(toK).equals(1) && (fromSide != toSide)){
+					State newState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+					if (BishopPiece.DEBUG_PRINT){
+						//Legal move
+						Utility.debug(i);
+						Utility.debug(newState.toString());
+						Utility.debug("\n");
+					}
+					newStateList.add(newState);
+				}	
+			}	
+		}
+		return newStateList;	
+	}
 }

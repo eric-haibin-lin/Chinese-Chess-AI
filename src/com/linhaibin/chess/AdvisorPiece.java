@@ -6,8 +6,8 @@ import java.util.List;
 
 public class AdvisorPiece extends AbstractPiece implements Piece {
 
-
-	private static List<Integer> AdvisorPosition = Arrays.asList(
+	private static boolean DEBUG_PRINT = false;
+	private static List<Integer> LegalPosition = Arrays.asList(
 			0,0,0,1,0,1,0,0,0,   
 			0,0,0,0,1,0,0,0,0,     
 			0,0,0,1,0,1,0,0,0,   
@@ -20,7 +20,7 @@ public class AdvisorPiece extends AbstractPiece implements Piece {
 			0,0,0,0,1,0,0,0,0,    
 			0,0,0,1,0,1,0,0,0);
 	
-	private static List<DirectionMove> AdvisorDirection = Arrays.asList(new DirectionMove(-1,-1), new DirectionMove(-1,+1), new DirectionMove(+1,-1), new DirectionMove(+1,+1));
+	private static List<DirectionMove> moveDirection = Arrays.asList(new DirectionMove(-1,-1), new DirectionMove(-1,+1), new DirectionMove(+1,-1), new DirectionMove(+1,+1));
 
 	public AdvisorPiece(int number) {
 		super(number);
@@ -45,18 +45,20 @@ public class AdvisorPiece extends AbstractPiece implements Piece {
 		List<Piece> stateList = state.getStateList();
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		for (int i = 0; i<4; i++){
-			int toX = fromX + AdvisorDirection.get(i).x;
-			int toY = fromY + AdvisorDirection.get(i).y;
+			int toX = fromX + moveDirection.get(i).x;
+			int toY = fromY + moveDirection.get(i).y;
 			if (Utility.isOnBoard(toX, toY)){
 				int toK = Utility.getOneDimention(toX, toY);
 				int fromSide = stateList.get(fromK).getSide();
 				int toSide = stateList.get(toK).getSide();
-				if (AdvisorPosition.get(toK).equals(1) && (fromSide != toSide)){
-					//Legal move
-//					Utility.debug("Legal move");
-//					Utility.debug(i);
-//					Utility.debug("\n");
+				if (LegalPosition.get(toK).equals(1) && (fromSide != toSide)){
 					State newState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+					if (AdvisorPiece.DEBUG_PRINT){
+						//Legal move
+						Utility.debug(i);
+						Utility.debug(newState.toString());
+						Utility.debug("\n");
+					}
 					newStateList.add(newState);
 				}	
 			}	
