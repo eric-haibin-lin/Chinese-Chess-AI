@@ -25,8 +25,7 @@ public class PieceFactory {
 				case 29:
 				case 30:
 				case 31:	return new PondPiece(number);
-				case 0:		return new EmptyPiece(number);
-				default: return null;
+				default: return new EmptyPiece(number);
 			}
 		else 
 			switch(number - Game.USER_TURN){
@@ -46,8 +45,7 @@ public class PieceFactory {
 			case 29:
 			case 30:
 			case 31:	return new PondPiece(number);
-			case 0:		return new EmptyPiece(number);
-	}
-		return null;
+			}
+		return new EmptyPiece(number);
 	}
 }

@@ -1,5 +1,6 @@
 package com.linhaibin.chess;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -64,7 +65,7 @@ public class State {
 	private static final String riverString = "\t==================================================================\n";
 	private static final String coordinateXString = "y \\ x\t0\t1\t2\t3\t4\t5\t6\t7\t8\t\n";
 	public static Hashtable<Integer, Boolean> stateListHashtable;
-	public static List<Piece> initStateList;
+	public static List<Piece> initStateList = new ArrayList<Piece>();
 	
 	
 	List<Piece> stateList;
@@ -81,10 +82,12 @@ public class State {
 	}
 	
 	public State() {
-		value = Evaluate.evaluateState(this);
+		initState();
+//		evaluateValue();
 	}
 	
 	public void initState(){
+		if (initStateList.size() == 0) State.initializePieceStateList();
 		this.stateList = initStateList;
 	}
 	

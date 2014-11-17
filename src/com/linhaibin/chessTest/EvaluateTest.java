@@ -22,12 +22,13 @@ public class EvaluateTest {
 	public void tearDown() throws Exception {
 		this.currentState = null;
 	}
-
+/*
 	@Test
 	public void testInitValue() {
 		int value = Evaluate.evaluateState(currentState);	
 		assertEquals(value, 0);
 	}
+	*/
 	
 	@Test
 	public void testRook() {
