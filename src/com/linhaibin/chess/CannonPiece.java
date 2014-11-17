@@ -13,7 +13,7 @@ public class CannonPiece extends AbstractPiece implements Piece {
 	}
 	@Override
 	public int evaluateStatic(int k){
-		int value = (side == Game.USER_TURN) ? Evaluate.redCannonPositionValue.get(k) : Evaluate.blackCannonPositionValue.get(k);
+		int value = (side == Game.USER_TURN) ? Evaluate.redCannonPositionValue.get(k) : (-1 * Evaluate.blackCannonPositionValue.get(k));
 		return value;
 	}
 	

@@ -14,7 +14,7 @@ public class AdvisorPiece extends AbstractPiece implements Piece {
 	
 	@Override
 	public int evaluateStatic(int k){
-		int value = (side == Game.USER_TURN) ? Evaluate.redAdvisorPositionValue.get(k) : Evaluate.blackAdvisorPositionValue.get(k);
+		int value = (side == Game.USER_TURN) ? Evaluate.redAdvisorPositionValue.get(k) : (-1 * Evaluate.blackAdvisorPositionValue.get(k));
 		return value;
 	}
 	

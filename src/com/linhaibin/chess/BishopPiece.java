@@ -14,7 +14,7 @@ public class BishopPiece extends AbstractPiece implements Piece {
 	
 	@Override
 	public int evaluateStatic(int k){
-		int value = (side == Game.USER_TURN) ? Evaluate.redBishopPositionValue.get(k) : Evaluate.blackBishopPositionValue.get(k);
+		int value = (side == Game.USER_TURN) ? Evaluate.redBishopPositionValue.get(k) : (-1 * Evaluate.blackBishopPositionValue.get(k));
 		return value;
 	}
 	

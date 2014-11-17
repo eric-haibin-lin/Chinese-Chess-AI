@@ -14,7 +14,7 @@ public class KnightPiece extends AbstractPiece implements Piece {
 	
 	@Override
 	public int evaluateStatic(int k){
-		int value = (side == Game.USER_TURN) ? Evaluate.redKnightPositionValue.get(k) : Evaluate.blackKnightPositionValue.get(k);
+		int value = (side == Game.USER_TURN) ? Evaluate.redKnightPositionValue.get(k) : (-1 * Evaluate.blackKnightPositionValue.get(k));
 		return value;
 	}
 	

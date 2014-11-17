@@ -11,7 +11,6 @@ public class AdvisorMove implements Move{
 	}
 
 	private static List<Integer> AdvisorPosition = Arrays.asList(
-
 			0,0,0,1,0,1,0,0,0,   
 			0,0,0,0,1,0,0,0,0,     
 			0,0,0,1,0,1,0,0,0,   

@@ -11,4 +11,12 @@ public class PondPiece extends AbstractPiece implements Piece {
 		if (side == Game.USER_TURN) return "P";
 		else return "p";
 	}
+	
+	@Override
+	public int evaluateStatic(int k){
+		int value = (side == Game.USER_TURN) ? Evaluate.redPondPositionValue.get(k) : (-1 * Evaluate.blackPondPositionValue.get(k));
+		return value;
+	}
+	
+	
 }
