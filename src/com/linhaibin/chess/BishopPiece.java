@@ -41,27 +41,28 @@ public class BishopPiece extends AbstractPiece implements Piece {
 	
 	@Override
 	public List<State> generateAllMove(State state, int fromX, int fromY) {
-		
 		List<State> newStateList = new ArrayList<State>();
 		List<Piece> stateList = state.getStateList();
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		for (int i = 0; i<4; i++){
 			int toX = fromX + moveDirection.get(i).x;
 			int toY = fromY + moveDirection.get(i).y;
-			if (Utility.isOnBoard(toX, toY)){
-				int toK = Utility.getOneDimention(toX, toY);
-				int fromSide = stateList.get(fromK).getSide();
-				int toSide = stateList.get(toK).getSide();
-				if (LegalPosition.get(toK).equals(1) && (fromSide != toSide)){
-					State newState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-					if (BishopPiece.DEBUG_PRINT){
-						//Legal move
-						Utility.debug(i);
-						Utility.debug(newState.toString());
-						Utility.debug("\n");
-					}
-					newStateList.add(newState);
-				}	
+			if (!Utility.isOnBoard(toX, toY))	continue;
+			int obstacleX = fromX + moveDirection.get(i).x / 2;
+			int obstacleY = fromY + moveDirection.get(i).y / 2;
+			if (!stateList.get(Utility.getOneDimention(obstacleX, obstacleY)).getClass().equals(EmptyPiece.class)) 	continue;
+			int toK = Utility.getOneDimention(toX, toY);
+			int fromSide = stateList.get(fromK).getSide();
+			int toSide = stateList.get(toK).getSide();
+			if (LegalPosition.get(toK).equals(1) && (fromSide != toSide)){
+				State newState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+				if (BishopPiece.DEBUG_PRINT){
+					//Legal move
+					Utility.debug(i);
+					Utility.debug(newState.toString());
+					Utility.debug("\n");
+				}
+				newStateList.add(newState);
 			}	
 		}
 		return newStateList;	

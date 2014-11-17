@@ -12,6 +12,7 @@ import com.linhaibin.chess.AdvisorPiece;
 import com.linhaibin.chess.BishopPiece;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
+import com.linhaibin.chess.Utility;
 
 public class BishopMoveTest {
 	private State state;
@@ -46,5 +47,26 @@ public class BishopMoveTest {
 		List<State> newStateList = bishopPiece.generateAllMove(midState, toX, toY);
 		assertEquals(newStateList.size(), 3);
 	}
+	
+
+	@Test
+	public void testSimpleObstacle() {
+		int fromX = 2;
+		int fromY = 9;
+		int toX = 4;
+		int toY = 7;
+		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		
+		int fromXObstacle = 3;
+		int fromYObstacle = 9;
+		int toXObstacle = 3;
+		int toYObstacle = 8;
+		
+		midState = UserMove.movePiece(midState, fromXObstacle, fromYObstacle, toXObstacle, toYObstacle);
+//		Utility.debug(midState.toString());
+		List<State> newStateList = bishopPiece.generateAllMove(midState, toX, toY);
+		assertEquals(newStateList.size(), 2);
+	}
+	
 	
 }
