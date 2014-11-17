@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class KingPiece extends AbstractPiece implements Piece {
-	private static boolean DEBUG_PRINT = true;
+	private static boolean DEBUG_PRINT = false;
 	private static List<DirectionMove> moveDirection = Arrays.asList(new DirectionMove(-1,0), new DirectionMove(+1,0), new DirectionMove(0,-1), new DirectionMove(0,+1));
 	private static List<Integer> LegalPosition = Arrays.asList(
 			0,0,0,1,1,1,0,0,0,   

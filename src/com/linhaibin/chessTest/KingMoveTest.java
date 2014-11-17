@@ -20,7 +20,7 @@ public class KingMoveTest {
 	@Before
 	public void setUp() throws Exception {
 		state = new State();
-		kingPiece = new KingPiece(19);
+		kingPiece = new KingPiece(16);
 	}
 
 	@After
