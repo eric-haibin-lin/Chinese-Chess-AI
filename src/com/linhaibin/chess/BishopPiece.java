@@ -67,4 +67,19 @@ public class BishopPiece extends AbstractPiece implements Piece {
 		}
 		return newStateList;	
 	}
+	
+	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
+		int toK = Utility.getOneDimention(toX, toY);
+		if (!Utility.isOnBoard(toX, toY)) return false;
+		if (!LegalPosition.get(toK).equals(1)) return false;
+		if (Utility.distanceSquare(fromX, fromY, toX, toY) != 8) return false;
+		
+		int obstacleX = (fromX + toX) / 2;
+		int obstacleY = (fromY + toY) / 2;
+		List<Piece> stateList = state.getStateList();
+		if (!stateList.get(Utility.getOneDimention(obstacleX, obstacleY)).getClass().equals(EmptyPiece.class)) 	return false;
+		
+		else return true;
+	}
+	
 }
