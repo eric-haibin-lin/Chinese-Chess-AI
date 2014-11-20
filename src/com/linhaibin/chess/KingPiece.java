@@ -60,5 +60,15 @@ public class KingPiece extends AbstractPiece implements Piece {
 		return newStateList;	
 	}
 	
+	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
+		
+		if (!AbstractPiece.isLegalBasic(state, fromX, fromY, toX, toY)) return false;
+		
+		int toK = Utility.getOneDimention(toX, toY);
+		if (!LegalPosition.get(toK).equals(1)) return false;
+		if (Utility.distanceSquare(fromX, fromY, toX, toY) != 1) return false;
+		else return true;
+	}
+	
 	
 }
