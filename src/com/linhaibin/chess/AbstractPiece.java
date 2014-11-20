@@ -53,9 +53,9 @@ public class AbstractPiece implements Cloneable{
 	}
 	
 	protected static boolean isLegalBasic(State state, int fromX, int fromY, int toX, int toY){
+		if (!Utility.isOnBoard(toX, toY)) return false;
 		if (suicide(state, fromX, fromY, toX, toY)) return false;
 		if (Utility.standStill(fromX, fromY, toX, toY)) return false;
-		if (!Utility.isOnBoard(toX, toY)) return false;
 		else return true;
 	}
 }

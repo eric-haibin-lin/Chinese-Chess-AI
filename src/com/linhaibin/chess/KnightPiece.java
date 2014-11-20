@@ -55,4 +55,18 @@ public class KnightPiece extends AbstractPiece implements Piece {
 		}
 		return newStateList;	
 	}
+	
+	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
+		if (!AbstractPiece.isLegalBasic(state, fromX, fromY, toX, toY)) return false;
+		
+		List<Piece> stateList = state.getStateList();
+
+		if (Utility.distanceSquare(fromX, fromY, toX, toY) != 5) return false;
+		
+		int obstacleX = (fromX + toX) / 2;
+		int obstacleY = (fromY + toY) / 2;
+		if (!stateList.get(Utility.getOneDimention(obstacleX, obstacleY)).getClass().equals(EmptyPiece.class)) 	return false;
+		
+		else return true;
+	}
 }
