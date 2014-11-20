@@ -46,5 +46,46 @@ public class RookMoveTest {
 		List<State> newStateList = rookPiece.generateAllMove(midState, toX, toY);
 		assertEquals(newStateList.size(), 10);
 	}
+
+	@Test
+	public void testLegalMove() {
+		int fromX = 0;
+		int fromY = 0;
+		int toX = 0;
+		int toY = 2;
+		
+		assertEquals(true,rookPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	@Test
+	public void testIllegalMoveSuicide() {
+		int fromX = 0;
+		int fromY = 0;
+		int toX = 0;
+		int toY = 3;
+		
+		assertEquals(false,rookPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	
+	@Test
+	public void testIllegalMoveAcross() {
+		int fromX = 0;
+		int fromY = 0;
+		int toX = 1;
+		int toY = 1;
+		
+		assertEquals(false,rookPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	@Test
+	public void testLegalMoveWithObstacle() {
+		int fromX = 0;
+		int fromY = 0;
+		int toX = 0;
+		int toY = 4;
+		
+		assertEquals(false,rookPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
 	
 }

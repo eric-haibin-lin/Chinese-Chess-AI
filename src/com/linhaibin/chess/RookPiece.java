@@ -54,7 +54,27 @@ public class RookPiece extends AbstractPiece implements Piece {
 		return newStateList;	
 	}
 	
-	
-	
+	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
+		if (Utility.standStill(fromX, fromY, toX, toY)) return false;
+		if (!Utility.isOnBoard(toX, toY)) return false;
+		if (suicide(state, fromX, fromY, toX, toY)) return false;
+		List<Piece> stateList = state.getStateList();
+		if (fromX == toX){
+			int lowerBound = (fromY > toY ? toY : fromY)+1;
+			int upperBound = (fromY > toY ? fromY : toY)-1;
+			for (int i = lowerBound; i <= upperBound; i++){
+				if (!stateList.get(Utility.getOneDimention(fromX, i)).getClass().equals(EmptyPiece.class))	return false;
+			}
+			return true;
+		}
+		else if (fromY == toY){
+			int lowerBound = (fromX > toX ? toX : fromX)+1;
+			int upperBound = (fromX > toX ? fromX : toX)-1;
+			for (int i = lowerBound; i <= upperBound; i++){
+				if (!stateList.get(Utility.getOneDimention(i, fromY)).getClass().equals(EmptyPiece.class))	return false;
+			}
+			return true;
+		} else return false;
+	}
 	
 }

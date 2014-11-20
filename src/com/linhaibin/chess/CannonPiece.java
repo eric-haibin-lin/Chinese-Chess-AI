@@ -73,6 +73,7 @@ public class CannonPiece extends AbstractPiece implements Piece {
 		if (Utility.standStill(fromX, fromY, toX, toY)) return false;
 		int toK = Utility.getOneDimention(toX, toY);
 		if (!Utility.isOnBoard(toX, toY)) return false;
+		if (suicide(state, fromX, fromY, toX, toY)) return false;
 		
 		List<Piece> stateList = state.getStateList();
 		

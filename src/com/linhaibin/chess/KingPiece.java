@@ -59,4 +59,6 @@ public class KingPiece extends AbstractPiece implements Piece {
 		}
 		return newStateList;	
 	}
+	
+	
 }

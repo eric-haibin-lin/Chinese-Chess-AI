@@ -63,6 +63,20 @@ public class AdvisorMoveTest {
 	}
 	
 	@Test
+	public void testLegalMoveSuicide() {
+		int fromX = 3;
+		int fromY = 9;
+		int toX = 4;
+		int toY = 8;
+		
+		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		int toXFinal = 5;
+		int toYFinal = 9;
+		
+		assertEquals(false,advisorPiece.isLegalMove(midState, toX, toY, toXFinal, toYFinal));
+	}
+	
+	@Test
 	public void testIllegalMove() {
 		int fromX = 3;
 		int fromY = 9;

@@ -50,6 +50,8 @@ public class CannonMoveTest {
 		assertEquals(8,newStateList.size());
 	}
 
+	
+	
 	@Test
 	public void testLegalMove() {
 		int fromX = 1;
@@ -58,6 +60,22 @@ public class CannonMoveTest {
 		int toY = 5;
 		assertEquals(true,cannonPiece.isLegalMove(state, fromX, fromY, toX, toY));
 	}
+	
+
+	@Test
+	public void testLegalMoveSuicide() {
+		int fromX = 1;
+		int fromY = 7;
+		int toX = 1;
+		int toY = 9;
+		
+		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		
+		int toXFinal = 1;
+		int toYFinal = 9;
+		assertEquals(false,cannonPiece.isLegalMove(midState, toX, toY, toXFinal, toYFinal));
+	}
+	
 	
 	@Test
 	public void testIllegalMove() {

@@ -68,6 +68,20 @@ public class BishopMoveTest {
 	}
 
 	@Test
+	public void testIllegalMoveSuicide() {
+		int fromX = 2;
+		int fromY = 9;
+		int toX = 4;
+		int toY = 7;
+		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		
+		int toXSuicide = 6;
+		int toYSuicide = 9;
+		assertEquals(false,bishopPiece.isLegalMove(midState, toX, toY, toXSuicide, toYSuicide));
+	}
+
+	
+	@Test
 	public void testLegalMove() {
 		int fromX = 2;
 		int fromY = 0;

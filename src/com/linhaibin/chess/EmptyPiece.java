@@ -17,5 +17,10 @@ public class EmptyPiece extends AbstractPiece implements Piece {
 	public int evaluateStatic(int k){
 		return 0;
 	}
-
+	
+	
+	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
+		return false;
+	}
+	
 }

@@ -43,4 +43,12 @@ public class AbstractPiece implements Cloneable{
 		}
 		return returnObj;
 	}
+	
+	public static boolean suicide(State state, int fromX, int fromY, int toX, int toY){
+		List<Piece> stateList = state.getStateList();
+		Piece sourcePiece = stateList.get(Utility.getOneDimention(fromX, fromY));
+		Piece targetPiece = stateList.get(Utility.getOneDimention(toX, toY));
+		if (sourcePiece.getSide() == targetPiece.getSide()) return true;
+		else return false;
+	}
 }
