@@ -81,4 +81,16 @@ public class PondPiece extends AbstractPiece implements Piece {
 		else return blackLegalPosition.get(toK).equals(1);
 	}
 	
+	
+	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
+		
+		if (!AbstractPiece.isLegalBasic(state, fromX, fromY, toX, toY)) return false;
+		
+		int toK = Utility.getOneDimention(toX, toY);
+		if (!checkLegalPosition(toK)) return false;
+		if (Utility.distanceSquare(fromX, fromY, toX, toY) != 1) return false;
+		else return true;
+	}
+	
+	
 }

@@ -59,5 +59,50 @@ public class PondMoveTest {
 		List<State> newStateList = pondPiece.generateAllMove(midState, toX, toY);
 		assertEquals(newStateList.size(), 3);
 	}
+	
+
+	@Test
+	public void testLegalMove() {
+		int fromX = 4;
+		int fromY = 6;
+		int toX = 4;
+		int toY = 5;
+		assertEquals(true,pondPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	@Test
+	public void testLegalMoveSuicide() {
+		int fromX = 1;
+		int fromY = 9;
+		int toX = 2;
+		int toY = 5;
+		
+		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		int fromXFinal = 2;
+		int fromYFinal = 6;
+		
+		assertEquals(false,pondPiece.isLegalMove(midState, fromXFinal, fromYFinal, toX, toY));
+	}
+	
+	@Test
+	public void testIllegalMove() {
+		int fromX = 4;
+		int fromY = 6;
+		int toX = 5;
+		int toY = 6;
+		
+		assertEquals(false,pondPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	
+	@Test
+	public void testIllegalMoveAcross() {
+		int fromX = 4;
+		int fromY = 6;
+		int toX = 5;
+		int toY = 4;
+		
+		assertEquals(false,pondPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
 
 }

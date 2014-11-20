@@ -76,4 +76,5 @@ public class RookPiece extends AbstractPiece implements Piece {
 		} else return false;
 	}
 	
+	
 }
