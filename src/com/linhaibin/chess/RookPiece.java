@@ -55,9 +55,8 @@ public class RookPiece extends AbstractPiece implements Piece {
 	}
 	
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
-		if (Utility.standStill(fromX, fromY, toX, toY)) return false;
-		if (!Utility.isOnBoard(toX, toY)) return false;
-		if (suicide(state, fromX, fromY, toX, toY)) return false;
+		if (!AbstractPiece.isLegalBasic(state, fromX, fromY, toX, toY)) return false;
+		
 		List<Piece> stateList = state.getStateList();
 		if (fromX == toX){
 			int lowerBound = (fromY > toY ? toY : fromY)+1;

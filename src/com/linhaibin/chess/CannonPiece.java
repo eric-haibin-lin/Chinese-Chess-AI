@@ -70,11 +70,9 @@ public class CannonPiece extends AbstractPiece implements Piece {
 	}
 
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
-		if (Utility.standStill(fromX, fromY, toX, toY)) return false;
-		int toK = Utility.getOneDimention(toX, toY);
-		if (!Utility.isOnBoard(toX, toY)) return false;
-		if (suicide(state, fromX, fromY, toX, toY)) return false;
 		
+		if (!AbstractPiece.isLegalBasic(state, fromX, fromY, toX, toY)) return false;
+		int toK = Utility.getOneDimention(toX, toY);
 		List<Piece> stateList = state.getStateList();
 		
 		if (fromX == toX){

@@ -44,11 +44,18 @@ public class AbstractPiece implements Cloneable{
 		return returnObj;
 	}
 	
-	public static boolean suicide(State state, int fromX, int fromY, int toX, int toY){
+	private static boolean suicide(State state, int fromX, int fromY, int toX, int toY){
 		List<Piece> stateList = state.getStateList();
 		Piece sourcePiece = stateList.get(Utility.getOneDimention(fromX, fromY));
 		Piece targetPiece = stateList.get(Utility.getOneDimention(toX, toY));
 		if (sourcePiece.getSide() == targetPiece.getSide()) return true;
 		else return false;
+	}
+	
+	protected static boolean isLegalBasic(State state, int fromX, int fromY, int toX, int toY){
+		if (suicide(state, fromX, fromY, toX, toY)) return false;
+		if (Utility.standStill(fromX, fromY, toX, toY)) return false;
+		if (!Utility.isOnBoard(toX, toY)) return false;
+		else return true;
 	}
 }
