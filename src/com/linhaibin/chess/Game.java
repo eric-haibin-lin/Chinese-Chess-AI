@@ -12,6 +12,7 @@ public class Game {
 	
 	public static int USER_TURN = 16;
 	public static int COMP_TURN = 32;
+	public static int EMPTY_SPACE = 0;
 	
 	//game related variables
 	private State currentState;

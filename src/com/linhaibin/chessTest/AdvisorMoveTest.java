@@ -24,7 +24,6 @@ public class AdvisorMoveTest {
 		
 	}
 	
-
 	@Test
 	public void test() {
 		int fromX = 3;
