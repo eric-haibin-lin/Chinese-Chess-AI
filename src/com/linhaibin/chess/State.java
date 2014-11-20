@@ -66,7 +66,7 @@ public class State implements Cloneable{
 	private static final String coordinateXString = "y \\ x\t0\t1\t2\t3\t4\t5\t6\t7\t8\t\n";
 	public static Hashtable<Integer, Boolean> stateListHashtable;
 	public static List<Piece> initStateList = new ArrayList<Piece>();
-	public static boolean PRINT_NUM = true;
+	public static boolean PRINT_NUM = false;
 	
 	List<Piece> stateList;
 	private int value;
