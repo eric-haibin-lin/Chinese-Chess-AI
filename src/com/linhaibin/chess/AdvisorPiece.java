@@ -66,4 +66,12 @@ public class AdvisorPiece extends AbstractPiece implements Piece {
 		return newStateList;	
 	}
 	
+	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
+		int toK = Utility.getOneDimention(toX, toY);
+		if (!Utility.isOnBoard(toX, toY)) return false;
+		if (!LegalPosition.get(toK).equals(1)) return false;
+		if (Utility.distanceSquare(fromX, fromY, toX, toY) != 2) return false;
+		else return true;
+	}
+	
 }

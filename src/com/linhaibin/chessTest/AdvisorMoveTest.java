@@ -52,4 +52,38 @@ public class AdvisorMoveTest {
 		assertEquals(newStateList.size(), 3);
 	}
 	
+
+	@Test
+	public void testLegalMove() {
+		int fromX = 3;
+		int fromY = 9;
+		int toX = 4;
+		int toY = 8;
+		assertEquals(true,advisorPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	@Test
+	public void testIllegalMove() {
+		int fromX = 3;
+		int fromY = 9;
+		int toX = 5;
+		int toY = 7;
+		
+		assertEquals(false,advisorPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	
+	@Test
+	public void testIllegalMoveAcross() {
+		int fromX = 3;
+		int fromY = 9;
+		int toX = 3;
+		int toY = 0;
+		
+		assertEquals(false,advisorPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	
+	
+	
 }
