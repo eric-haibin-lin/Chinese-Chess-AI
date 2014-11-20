@@ -35,7 +35,6 @@ public class UtilityTest {
 	@Test
 	public void test3() {
 		int i = Utility.getOneDimention(2, 1);
-//		Utility.debug(i);
 		assertEquals(i, 11);
 	}
 

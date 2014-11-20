@@ -114,7 +114,4 @@ public class BishopMoveTest {
 		assertEquals(false,bishopPiece.isLegalMove(midState, fromX, fromY, toX, toY));
 	}
 	
-	
-	
-	
 }

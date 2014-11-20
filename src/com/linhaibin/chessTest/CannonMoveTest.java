@@ -45,10 +45,51 @@ public class CannonMoveTest {
 		int toY = 7;
 
 		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-//		System.out.println(midState.toString());
 		List<State> newStateList = cannonPiece
 				.generateAllMove(midState, toX, toY);
 		assertEquals(8,newStateList.size());
 	}
 
+	@Test
+	public void testLegalMove() {
+		int fromX = 1;
+		int fromY = 7;
+		int toX = 1;
+		int toY = 5;
+		assertEquals(true,cannonPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	@Test
+	public void testIllegalMove() {
+		int fromX = 1;
+		int fromY = 7;
+		int toX = 1;
+		int toY = 2;
+		
+		assertEquals(false,cannonPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	
+	@Test
+	public void testIllegalMoveAcross() {
+		int fromX = 1;
+		int fromY = 7;
+		int toX = 1;
+		int toY = 1;
+		
+		assertEquals(false,cannonPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	@Test
+	public void testLegalMoveWithObstacle() {
+		int fromX = 1;
+		int fromY = 7;
+		int toX = 1;
+		int toY = 0;
+		
+		assertEquals(true,cannonPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	
+	
 }

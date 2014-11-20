@@ -68,5 +68,36 @@ public class CannonPiece extends AbstractPiece implements Piece {
 		}
 		return newStateList;	
 	}
+
+	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
+		if (Utility.standStill(fromX, fromY, toX, toY)) return false;
+		int toK = Utility.getOneDimention(toX, toY);
+		if (!Utility.isOnBoard(toX, toY)) return false;
+		
+		List<Piece> stateList = state.getStateList();
+		
+		if (fromX == toX){
+			int lowerBound = (fromY > toY ? toY : fromY)+1;
+			int upperBound = (fromY > toY ? fromY : toY)-1;
+			int obstacleCount = 0;
+			for (int i = lowerBound; i <= upperBound; i++){
+				if (!stateList.get(Utility.getOneDimention(fromX, i)).getClass().equals(EmptyPiece.class))	obstacleCount++;
+			}
+			if (obstacleCount == 1 && ((!stateList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
+			else if (obstacleCount == 0 && ((stateList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
+			else return false;
+		}
+		else if (fromY == toY){
+			int lowerBound = (fromX > toX ? toX : fromX)+1;
+			int upperBound = (fromX > toX ? fromX : toX)-1;
+			int obstacleCount = 0;
+			for (int i = lowerBound; i <= upperBound; i++){
+				if (!stateList.get(Utility.getOneDimention(i, fromY)).getClass().equals(EmptyPiece.class))	obstacleCount++;
+			}
+			if (obstacleCount == 1 && ((!stateList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
+			else if (obstacleCount == 0 && ((stateList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
+			else return false;
+		} else return false;
+	}
 	
 }

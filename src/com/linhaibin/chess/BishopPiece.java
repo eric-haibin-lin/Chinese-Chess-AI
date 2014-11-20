@@ -69,6 +69,7 @@ public class BishopPiece extends AbstractPiece implements Piece {
 	}
 	
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
+		if (Utility.standStill(fromX, fromY, toX, toY)) return false;
 		int toK = Utility.getOneDimention(toX, toY);
 		if (!Utility.isOnBoard(toX, toY)) return false;
 		if (!LegalPosition.get(toK).equals(1)) return false;
@@ -81,5 +82,6 @@ public class BishopPiece extends AbstractPiece implements Piece {
 		
 		else return true;
 	}
+	
 	
 }
