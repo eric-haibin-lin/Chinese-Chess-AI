@@ -6,9 +6,20 @@ public class AbstractPiece implements Cloneable{
 
 	int number;
 	int side;
+	int x;
+	int y;
 	
 	public AbstractPiece(int number){
 		this.number = number;
+		if (number == 0) this.side = Game.EMPTY_SPACE;
+		else if ((number & Game.USER_TURN) == Game.USER_TURN)	this.side = Game.USER_TURN; 
+		else	this.side = Game.COMP_TURN;
+	}
+	
+	public AbstractPiece(int number, int x, int y) {
+		this.number = number;
+		this.x = x;
+		this.y = y;
 		if (number == 0) this.side = Game.EMPTY_SPACE;
 		else if ((number & Game.USER_TURN) == Game.USER_TURN)	this.side = Game.USER_TURN; 
 		else	this.side = Game.COMP_TURN;

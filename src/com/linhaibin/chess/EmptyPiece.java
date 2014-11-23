@@ -8,6 +8,10 @@ public class EmptyPiece extends AbstractPiece implements Piece {
 		super(number);
 	}
 	
+	public EmptyPiece(int number, int x, int y) {
+		super(number,x,y);
+	}
+	
 	@Override
 	public String toString(){
 		return "0";

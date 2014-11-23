@@ -74,22 +74,26 @@ public class State implements Cloneable{
 	
 	public static void initializePieceStateList(){
 		Iterator<Integer> iterator = initIntList.iterator();
-		while(iterator.hasNext()){
-			Piece piece = PieceFactory.getPiece(iterator.next());
-			initStateList.add(piece);
+		for (int y = 0; y <= 9; y++){			
+			for (int x = 0; x <= 8; x++){
+				if(iterator.hasNext()){
+					Piece piece = PieceFactory.getPiece(iterator.next(),x,y);
+					initStateList.add(piece);
+				}
+			}
 		}
-		return;
 	}
 	
 	public State() {
 		initState();
-//		evaluateValue();
 	}
 	
-	public void initState(){
+	private void initState(){
 		if (initStateList.size() == 0) State.initializePieceStateList();
 		this.stateList = initStateList;
 	}
+	
+	
 	
 	public List<Piece> getStateList(){
 		return this.stateList;

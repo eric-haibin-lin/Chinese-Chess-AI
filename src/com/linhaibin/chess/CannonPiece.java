@@ -12,6 +12,10 @@ public class CannonPiece extends AbstractPiece implements Piece {
 		super(number);
 	}
 	
+	public CannonPiece(int number, int x, int y) {
+		super(number,x,y);
+	}
+	
 	@Override
 	public String toString(){
 		if (side == Game.USER_TURN) return "C";

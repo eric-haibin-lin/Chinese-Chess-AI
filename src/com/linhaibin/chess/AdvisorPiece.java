@@ -26,6 +26,10 @@ public class AdvisorPiece extends AbstractPiece implements Piece {
 		super(number);
 	}
 	
+	public AdvisorPiece(int number, int x, int y) {
+		super(number,x,y);
+	}
+	
 	@Override
 	public String toString(){
 		if (side == Game.USER_TURN) return "A";

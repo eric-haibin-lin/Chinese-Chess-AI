@@ -15,7 +15,7 @@ public class UserMove{
 			int fromK = Utility.getOneDimention(fromX, fromY);
 			int toK = Utility.getOneDimention(toX, toY);
 			stateList.set(toK, stateList.get(fromK));
-			stateList.set(fromK, PieceFactory.getPiece(0));
+			stateList.set(fromK, PieceFactory.getPiece(0, fromX, fromY));
 //			state.evaluateValue();
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();

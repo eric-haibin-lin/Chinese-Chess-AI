@@ -12,6 +12,10 @@ public class RookPiece extends AbstractPiece implements Piece {
 		super(number);
 	}
 	
+	public RookPiece(int number, int x, int y) {
+		super(number,x,y);
+	}
+	
 	@Override
 	public String toString(){
 		if (side == Game.USER_TURN) return "R";
