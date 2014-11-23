@@ -66,9 +66,11 @@ public class State implements Cloneable{
 	private static final String coordinateXString = "y \\ x\t0\t1\t2\t3\t4\t5\t6\t7\t8\t\n";
 	public static Hashtable<Integer, Boolean> stateListHashtable;
 	public static List<Piece> initStateList = new ArrayList<Piece>();
-	public static boolean PRINT_NUM = false;
+	public static Hashtable<Integer, Piece> initPieceList = new Hashtable<Integer, Piece>();
+	public static boolean PRINT_NUM = true;
 	
 	List<Piece> stateList;
+	Hashtable<Integer, Piece> pieceList;
 	private int value;
 	
 	
@@ -77,8 +79,10 @@ public class State implements Cloneable{
 		for (int y = 0; y <= 9; y++){			
 			for (int x = 0; x <= 8; x++){
 				if(iterator.hasNext()){
-					Piece piece = PieceFactory.getPiece(iterator.next(),x,y);
+					int i = iterator.next();
+					Piece piece = PieceFactory.getPiece(i,x,y);
 					initStateList.add(piece);
+					if (i != 0) initPieceList.put(i, piece);
 				}
 			}
 		}
@@ -90,13 +94,16 @@ public class State implements Cloneable{
 	
 	private void initState(){
 		if (initStateList.size() == 0) State.initializePieceStateList();
-		this.stateList = initStateList;
+		setStateList(initStateList);
+		this.pieceList = initPieceList;
 	}
-	
-	
 	
 	public List<Piece> getStateList(){
 		return this.stateList;
+	}
+	
+	public Hashtable<Integer, Piece> getPieceList(){
+		return this.pieceList;
 	}
 	
 	public void evaluateValue(){
