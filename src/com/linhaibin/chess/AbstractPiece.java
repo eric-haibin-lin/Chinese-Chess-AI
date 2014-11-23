@@ -34,6 +34,13 @@ public class AbstractPiece implements Cloneable{
 		return this.side;
 	}
 
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
+	}
 	
 	public int evaluateStatic(int k) {
 		return 0;

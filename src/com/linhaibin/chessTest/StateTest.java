@@ -3,11 +3,14 @@ package com.linhaibin.chessTest;
 import static org.junit.Assert.*;
 
 import java.util.Hashtable;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.linhaibin.chess.Game;
 import com.linhaibin.chess.Piece;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
@@ -16,11 +19,13 @@ import com.linhaibin.chess.Utility;
 public class StateTest {
 
 	State state;
+	State anotherState;
 	
 	@Before
 	public void setUp() throws Exception {
 		State.initializePieceStateList();
 		state = new State();
+		anotherState = new State();
 	}
 
 	@After
@@ -40,20 +45,24 @@ public class StateTest {
 		int toX = 2;
 		int toY = 7;
 		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-		Hashtable<Integer, Piece> pieceList = midState.getPieceList();
-		Utility.debug(pieceList);
+		ConcurrentHashMap<Integer, Piece> pieceList = midState.getPieceList();
+		int sizeBefore = pieceList.size();
 		
 		int toXSuicide = 3;
 		int toYSuicide = 9;
 		
 		midState = UserMove.movePiece(midState, toX, toY, toXSuicide, toYSuicide);
 		pieceList = midState.getPieceList();
-		Utility.debug(pieceList);
+		int sizeAfter = pieceList.size();
 		
-		assert(true);
+		assertEquals(sizeBefore, sizeAfter + 1);
 	}
 	
-	
-	
-	
+	@Test
+	public void testGenerateAllState(){
+		List<State> childStates = state.generateAllState(Game.COMP_TURN);
+		List<State> anotherChildStates = anotherState.generateAllState(Game.USER_TURN);
+		assertEquals(childStates.size(), anotherChildStates.size());
+		assertEquals(childStates.size(), 44);
+	}
 }

@@ -2,9 +2,11 @@ package com.linhaibin.chess;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class State implements Cloneable{
 	
@@ -66,11 +68,11 @@ public class State implements Cloneable{
 	private static final String coordinateXString = "y \\ x\t0\t1\t2\t3\t4\t5\t6\t7\t8\t\n";
 	public static Hashtable<Integer, Boolean> stateListHashtable;
 	public static List<Piece> initStateList = new ArrayList<Piece>();
-	public static Hashtable<Integer, Piece> initPieceList = new Hashtable<Integer, Piece>();
+	public static ConcurrentHashMap<Integer, Piece> initPieceList = new ConcurrentHashMap<Integer, Piece>();
 	public static boolean PRINT_NUM = true;
 	
 	List<Piece> stateList;
-	Hashtable<Integer, Piece> pieceList;
+	ConcurrentHashMap<Integer, Piece> pieceList;
 	private int value;
 	
 	
@@ -102,7 +104,7 @@ public class State implements Cloneable{
 		return this.stateList;
 	}
 	
-	public Hashtable<Integer, Piece> getPieceList(){
+	public ConcurrentHashMap<Integer, Piece> getPieceList(){
 		return this.pieceList;
 	}
 	
@@ -136,8 +138,12 @@ public class State implements Cloneable{
 		return (buffer.toString());
 	}
 	
-	public void setStateList(List<Piece> stateList){
+	private void setStateList(List<Piece> stateList){
 		this.stateList = stateList;
+	}
+	
+	private void setPieceList(ConcurrentHashMap<Integer, Piece> pieceList){
+		this.pieceList = pieceList;
 	}
 	
 	public String toString(){
@@ -161,7 +167,16 @@ public class State implements Cloneable{
 		return(buffer.toString());
 	}
 	
-	private List<Piece> clonePieceList(){
+	private ConcurrentHashMap<Integer, Piece> clonePieceList(){
+		ConcurrentHashMap<Integer, Piece> list = new ConcurrentHashMap<Integer, Piece>();
+		Collection<Piece> pieces = pieceList.values();
+		for(Piece piece : pieces){
+			list.put(piece.getNumber(), (Piece) piece.clone());
+		}
+		return list;	
+	}
+	
+	private List<Piece> cloneStateList(){
 		List<Piece> list = new ArrayList<Piece>();
 		for(Piece piece : this.stateList){
 			list.add((Piece) piece.clone());
@@ -172,7 +187,26 @@ public class State implements Cloneable{
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		State returnState =  (State) super.clone();
-		returnState.setStateList(this.clonePieceList());
+		returnState.setStateList(this.cloneStateList());
+		returnState.setPieceList(this.clonePieceList());
 		return returnState;
+	}
+	
+	public List<State> generateAllState(int side){
+		List<State> childStates = new ArrayList<State>();
+		Collection<Piece> pieces = pieceList.values();
+		Iterator<Piece> it = pieces.iterator();
+		
+		System.out.println(pieces.size());
+	    while (it.hasNext()) {
+	        Piece piece = (Piece) it.next();
+	        if (piece.getSide() == side){
+	        	List<State> newStates = piece.generateAllMove(this, piece.getX(), piece.getY()); 
+	        	childStates.addAll(newStates);
+	        }
+	    }
+	    
+	    
+		return childStates;	
 	}
 }

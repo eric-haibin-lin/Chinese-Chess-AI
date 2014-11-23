@@ -10,5 +10,6 @@ public interface Piece{
 	public List<State> generateAllMove(State state, int fromX, int fromY);
 	public Object clone();
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY);
-	
+	public int getX();
+	public int getY();
 }
