@@ -20,6 +20,14 @@ public class KingPiece extends AbstractPiece implements Piece {
 			0,0,0,1,1,1,0,0,0,    
 			0,0,0,1,1,1,0,0,0);
 	
+	private static int EXISTENCE_VALUE = 10000;
+	
+	@Override
+	public int evaluateExistence() {
+		int value = (side == Game.USER_TURN) ? EXISTENCE_VALUE : (-1 * EXISTENCE_VALUE);
+		return value;
+	}
+	
 	public KingPiece(int number) {
 		super(number);
 	}

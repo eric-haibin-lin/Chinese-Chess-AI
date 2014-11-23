@@ -206,19 +206,22 @@ public class Evaluate {
 	private static int evaluateStatic(State state){
 		int staticValue = 0;
 		Collection<Piece> pieceList = state.getPieceList().values();
-		
 		Iterator<Piece> it = pieceList.iterator();
-		
 		while(it.hasNext()){
 			Piece piece = it.next();
 			staticValue += piece.evaluateStatic(piece.getX(), piece.getY());
 		}
-		
 		return staticValue;
 	}
 	
 	private static int evaluateExistence(State state){
 		int existenceValue = 0;
+		Collection<Piece> pieceList = state.getPieceList().values();
+		Iterator<Piece> it = pieceList.iterator();
+		while(it.hasNext()){
+			Piece piece = it.next();
+			existenceValue += piece.evaluateExistence();
+		}
 		return existenceValue;
 	}
 	

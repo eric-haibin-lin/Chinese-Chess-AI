@@ -21,7 +21,8 @@ public class AdvisorPiece extends AbstractPiece implements Piece {
 			0,0,0,1,0,1,0,0,0);
 	
 	private static List<DirectionMove> moveDirection = Arrays.asList(new DirectionMove(-1,-1), new DirectionMove(-1,+1), new DirectionMove(+1,-1), new DirectionMove(+1,+1));
-
+	private static int EXISTENCE_VALUE = 20;
+	
 	public AdvisorPiece(int number) {
 		super(number);
 	}
@@ -37,11 +38,18 @@ public class AdvisorPiece extends AbstractPiece implements Piece {
 	}
 	
 	@Override
+	public int evaluateExistence() {
+		int value = (side == Game.USER_TURN) ? EXISTENCE_VALUE : (-1 * EXISTENCE_VALUE);
+		return value;
+	}
+	
+	@Override
 	public int evaluateStatic(int x, int y){
 		int k = Utility.getOneDimention(x, y);
 		int value = (side == Game.USER_TURN) ? Evaluate.redAdvisorPositionValue.get(k) : (-1 * Evaluate.blackAdvisorPositionValue.get(k));
 		return value;
 	}
+
 
 	@Override
 	public List<State> generateAllMove(State state, int fromX, int fromY) {

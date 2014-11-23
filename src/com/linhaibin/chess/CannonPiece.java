@@ -7,6 +7,13 @@ import java.util.List;
 public class CannonPiece extends AbstractPiece implements Piece {
 	private static boolean DEBUG_PRINT = false;
 	private static List<DirectionMove> moveDirection = Arrays.asList(new DirectionMove(-1,0), new DirectionMove(+1,0), new DirectionMove(0,-1), new DirectionMove(0,+1));
+	private static int EXISTENCE_VALUE = 45;
+	
+	@Override
+	public int evaluateExistence() {
+		int value = (side == Game.USER_TURN) ? EXISTENCE_VALUE : (-1 * EXISTENCE_VALUE);
+		return value;
+	}
 	
 	public CannonPiece(int number) {
 		super(number);

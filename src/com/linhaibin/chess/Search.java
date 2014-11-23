@@ -29,7 +29,6 @@ public class Search {
 		while(it.hasNext()){
 			State newState = it.next();
 			int newValue = maxSearch(newState, depth-1, changeSide(side)).getValue();
-//			System.out.println("Min search Value:" + String.valueOf(newValue));
 			if (newValue < value){
 //				System.out.println("Min search update value:" + String.valueOf(newValue));
 				minState = newState;
@@ -54,7 +53,6 @@ public class Search {
 		while(it.hasNext()){
 			State newState = it.next();
 			int newValue = minSearch(newState, depth-1, changeSide(side)).getValue();
-//			System.out.println("Max search New Value:" + String.valueOf(newValue));
 			if (newValue > value){
 				maxState = newState;
 				value = newValue;

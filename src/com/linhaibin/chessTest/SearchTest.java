@@ -6,8 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.linhaibin.chess.Game;
 import com.linhaibin.chess.Search;
 import com.linhaibin.chess.State;
+import com.linhaibin.chess.UserMove;
 
 public class SearchTest {
 
@@ -21,21 +23,25 @@ public class SearchTest {
 	public void tearDown() throws Exception {
 	}
 
-//	@Test
-//	public void testLevelOne() {
-//		State chosenState = (Search.minMaxSearch(state, 1));
-//		System.out.println(chosenState);
-//		System.out.println(chosenState.getValue());
-//		assert(true);
-//	}
-//	
-//
 	@Test
-	public void testLevelFour() {
-		State chosenState = (Search.minMaxSearch(state, 3));
+	public void testLevelOne() {
+		State chosenState = (Search.minMaxSearch(state, 1));
 		System.out.println(chosenState);
-		System.out.println(chosenState.getValue());
 		assert(true);
 	}
+	
 
+	@Test
+	public void testLevelThreeKill() {
+		State midState;
+		int fromX = 0;
+		int fromY = 9;
+		int toX = 4;
+		int toY = 3;
+		
+		midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State chosenState = (Search.minMaxSearch(midState, 3));
+		System.out.println(chosenState);
+		assert(true);
+	}
 }

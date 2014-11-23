@@ -12,6 +12,14 @@ public class KnightPiece extends AbstractPiece implements Piece {
 			new DirectionMove(+1,-2), new DirectionMove(+1,+2),
 			new DirectionMove(+2,-1), new DirectionMove(+2,+1));
 	
+	private static int EXISTENCE_VALUE = 40;
+	
+	@Override
+	public int evaluateExistence() {
+		int value = (side == Game.USER_TURN) ? EXISTENCE_VALUE : (-1 * EXISTENCE_VALUE);
+		return value;
+	}
+	
 	public KnightPiece(int number) {
 		super(number);
 	}

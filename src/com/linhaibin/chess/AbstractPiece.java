@@ -42,12 +42,16 @@ public class AbstractPiece implements Cloneable{
 		return y;
 	}
 	
-	public int evaluateStatic(int k) {
+	public int evaluateStatic(int x, int y) {
+		return 0;
+	}
+	
+	public int evaluateExistence() {
 		return 0;
 	}
 
+	
 	public List<State> generateAllMove(State state, int fromX, int fromY) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
@@ -75,5 +79,9 @@ public class AbstractPiece implements Cloneable{
 		if (suicide(state, fromX, fromY, toX, toY)) return false;
 		if (Utility.standStill(fromX, fromY, toX, toY)) return false;
 		else return true;
+	}
+	public void setPosition(int x, int y ){
+		this.x = x;
+		this.y = y;
 	}
 }

@@ -21,7 +21,9 @@ public class UserMove{
 			Piece pieceFrom = stateList.get(fromK);
 			Piece pieceTo = stateList.get(toK);
 			
+			pieceFrom.setPosition(toX, toY);
 			stateList.set(toK, pieceFrom);
+			pieceList.replace(pieceFrom.getNumber(), pieceFrom);
 			stateList.set(fromK, PieceFactory.getPiece(0, fromX, fromY));
 			pieceList.remove(pieceTo.getNumber());
 			

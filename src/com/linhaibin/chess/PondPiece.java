@@ -32,6 +32,13 @@ public class PondPiece extends AbstractPiece implements Piece {
 			1,1,1,1,1,1,1,1,1,
 			1,1,1,1,1,1,1,1,1);
 	
+	private static int EXISTENCE_VALUE = 10;
+	
+	@Override
+	public int evaluateExistence() {
+		int value = (side == Game.USER_TURN) ? EXISTENCE_VALUE : (-1 * EXISTENCE_VALUE);
+		return value;
+	}
 	public PondPiece(int number) {
 		super(number);
 	}
