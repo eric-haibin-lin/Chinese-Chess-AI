@@ -1,6 +1,8 @@
 package com.linhaibin.chess;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 public class Evaluate {
@@ -192,25 +194,32 @@ public class Evaluate {
 	        110,125,100,70,60,70,100,125,110,
 	        125,130,100,70,60,70,100,130,125);
 	
+	
 	public static int evaluateState(State state){
 		int value = 0;
 		value += evaluateStatic(state);
 		value += evaluateMobility(state);
+		value += evaluateExistence(state);
 		return value;
 	}
 	
 	private static int evaluateStatic(State state){
 		int staticValue = 0;
-		List<Piece> stateList = state.getStateList();
+		Collection<Piece> pieceList = state.getPieceList().values();
 		
-		for (int y = 0; y <= 9; y++){			
-			for (int x = 0; x <= 8; x++){
-				int k = y * 9 + x;
-				Piece piece = stateList.get(k);
-				staticValue += piece.evaluateStatic(k);
-			}
+		Iterator<Piece> it = pieceList.iterator();
+		
+		while(it.hasNext()){
+			Piece piece = it.next();
+			staticValue += piece.evaluateStatic(piece.getX(), piece.getY());
 		}
+		
 		return staticValue;
+	}
+	
+	private static int evaluateExistence(State state){
+		int existenceValue = 0;
+		return existenceValue;
 	}
 	
 	private static int evaluateMobility(State state){

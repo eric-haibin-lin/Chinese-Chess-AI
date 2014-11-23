@@ -122,4 +122,10 @@ public class EvaluateTest {
 	}
 	assertEquals(Evaluate.blackRookPositionValue.get(9*0+0), Evaluate.redRookPositionValue.get(9*9+0));
 	}
+	
+	@Test
+	public void testInfinity(){
+		Integer positiveInfinity = Integer.MAX_VALUE;
+		assert(positiveInfinity.equals(positiveInfinity-1));
+	}
 }

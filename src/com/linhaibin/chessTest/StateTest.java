@@ -20,6 +20,7 @@ public class StateTest {
 
 	State state;
 	State anotherState;
+	String initStateString = "[r, n, b, a, k, a, b, n, r, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, c, 0, 0, 0, 0, 0, c, 0, p, 0, p, 0, p, 0, p, 0, p, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, P, 0, P, 0, P, 0, P, 0, P, 0, C, 0, 0, 0, 0, 0, C, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, R, N, B, A, K, A, B, N, R, r, n, b, a, k, a, b, n, r, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, c, 0, 0, 0, 0, 0, c, 0, p, 0, p, 0, p, 0, p, 0, p, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, P, 0, P, 0, P, 0, P, 0, P, 0, C, 0, 0, 0, 0, 0, C, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, R, N, B, A, K, A, B, N, R]";
 	
 	@Before
 	public void setUp() throws Exception {
@@ -34,8 +35,7 @@ public class StateTest {
 
 	@Test
 	public void test() {
-		System.out.println(State.initStateList.toString());
-		assert(true);
+		assertEquals(initStateString, State.initStateList.toString());
 	}
 	
 	@Test

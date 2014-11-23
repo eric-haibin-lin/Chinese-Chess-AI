@@ -18,7 +18,7 @@ public class EmptyPiece extends AbstractPiece implements Piece {
 	}
 	
 	@Override
-	public int evaluateStatic(int k){
+	public int evaluateStatic(int x, int y){
 		return 0;
 	}
 	

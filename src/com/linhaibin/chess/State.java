@@ -27,7 +27,7 @@ public class State implements Cloneable{
 	public static final int CANNON_BLACK = 42;
 	public static final int PAWN_BLACK = 47;
 
-	//For 16*16 extended board
+	//For 16*16 extended board, deprecated
 	public static List<Integer> initStateList = Arrays.asList(
 			0,0,0,     0,0,0,0,0,0,0,0,0,     0,0,0,0,
 			0,0,0,     0,0,0,0,0,0,0,0,0,     0,0,0,0,
@@ -115,6 +115,10 @@ public class State implements Cloneable{
 	public int getValue(){
 		return this.value;
 	}
+
+	public void setValue(int value){
+		this.value = value;
+	}
 	
 	public String toStringExtended(){
 		StringBuffer buffer = new StringBuffer(); 
@@ -197,7 +201,6 @@ public class State implements Cloneable{
 		Collection<Piece> pieces = pieceList.values();
 		Iterator<Piece> it = pieces.iterator();
 		
-		System.out.println(pieces.size());
 	    while (it.hasNext()) {
 	        Piece piece = (Piece) it.next();
 	        if (piece.getSide() == side){
@@ -205,8 +208,6 @@ public class State implements Cloneable{
 	        	childStates.addAll(newStates);
 	        }
 	    }
-	    
-	    
 		return childStates;	
 	}
 }

@@ -35,7 +35,8 @@ public class KingPiece extends AbstractPiece implements Piece {
 		else return "k";
 	}
 	@Override
-	public int evaluateStatic(int k){
+	public int evaluateStatic(int x, int y){
+		int k = Utility.getOneDimention(x, y);
 		int value = (side == Game.USER_TURN) ? Evaluate.redKingPositionValue.get(k) : (-1 * Evaluate.blackKingPositionValue.get(k));
 		return value;
 	}
