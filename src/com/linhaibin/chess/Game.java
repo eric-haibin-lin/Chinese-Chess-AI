@@ -76,11 +76,7 @@ public class Game {
 				"P => Pawn\t\n" 
 		);
 	}
-	
-	//For 16*16 board
-	void printStateExtended(State state){
-		System.out.println(state.toStringExtended());
-	}
+
 	
 	//For 9*10 board
 	void printStatePlain(State state){
