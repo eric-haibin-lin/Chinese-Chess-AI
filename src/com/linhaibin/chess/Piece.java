@@ -13,5 +13,6 @@ public interface Piece{
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY);
 	public int getX();
 	public int getY();
+	public int getK();
 	public void setPosition(int x, int y);
 }

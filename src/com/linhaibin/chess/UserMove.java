@@ -24,12 +24,12 @@ public class UserMove{
 			int toK = Utility.getOneDimention(toX, toY);
 			Piece pieceFrom = stateList.get(fromK);
 			Piece pieceTo = stateList.get(toK);
-			
+
 			pieceFrom.setPosition(toX, toY);
-			stateList.set(toK, pieceFrom);
-			pieceList.replace(pieceFrom.getNumber(), pieceFrom);
+			stateList.set(toK, pieceFrom);			
 			stateList.set(fromK, PieceFactory.getPiece(0, fromX, fromY));
-			pieceList.remove(pieceTo.getNumber());
+			pieceList.replace(pieceFrom.getK(), pieceFrom);
+			pieceList.remove(pieceTo.getK());
 			
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();

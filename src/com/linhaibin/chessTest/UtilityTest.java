@@ -21,14 +21,12 @@ public class UtilityTest {
 	@Test
 	public void test1() {
 		int i = Utility.getOneDimention(0, 0);
-//		Utility.debug(i);
 		assertEquals(i, 0);
 	}
 
 	@Test
 	public void test2() {
 		int i = Utility.getOneDimention(1, 0);
-//		Utility.debug(i);
 		assertEquals(i, 1);
 	}
 

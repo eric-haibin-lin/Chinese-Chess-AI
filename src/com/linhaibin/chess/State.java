@@ -84,7 +84,7 @@ public class State implements Cloneable{
 					int i = iterator.next();
 					Piece piece = PieceFactory.getPiece(i,x,y);
 					initStateList.add(piece);
-					if (i != 0) initPieceList.put(i, piece);
+					if (i != 0) initPieceList.put(piece.getK(), piece);
 				}
 			}
 		}
@@ -175,7 +175,7 @@ public class State implements Cloneable{
 		ConcurrentHashMap<Integer, Piece> list = new ConcurrentHashMap<Integer, Piece>();
 		Collection<Piece> pieces = pieceList.values();
 		for(Piece piece : pieces){
-			list.put(piece.getNumber(), (Piece) piece.clone());
+			list.put(piece.getK(), (Piece) piece.clone());
 		}
 		return list;	
 	}
