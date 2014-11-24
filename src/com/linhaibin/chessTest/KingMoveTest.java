@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.linhaibin.chess.KingPiece;
+import com.linhaibin.chess.Move;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
 
@@ -31,8 +32,8 @@ public class KingMoveTest {
 	public void testGenerateAllSimple() {
 		int fromX = 4;
 		int fromY = 9;
-		List<State> newStateList = kingPiece.generateAllMove(state, fromX, fromY);
-		assertEquals(newStateList.size(), 1);
+		List<Move> newMoveList = kingPiece.generateAllMove(state, fromX, fromY);
+		assertEquals(newMoveList.size(), 1);
 	}
 
 	@Test
@@ -43,8 +44,8 @@ public class KingMoveTest {
 		int toY = 8;
 		
 		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-		List<State> newStateList = kingPiece.generateAllMove(midState, toX, toY);
-		assertEquals(newStateList.size(), 4);
+		List<Move> newMoveList = kingPiece.generateAllMove(midState, toX, toY);
+		assertEquals(newMoveList.size(), 4);
 	}
 	
 

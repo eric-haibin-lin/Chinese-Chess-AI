@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.linhaibin.chess.BishopPiece;
 import com.linhaibin.chess.KnightPiece;
+import com.linhaibin.chess.Move;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
 
@@ -32,8 +33,8 @@ public class KnightMoveTest {
 	public void testGenerateAllSimple() {
 		int fromX = 1;
 		int fromY = 9;
-		List<State> newStateList = knightPiece.generateAllMove(state, fromX, fromY);
-		assertEquals(newStateList.size(), 2);
+		List<Move> newMoveList = knightPiece.generateAllMove(state, fromX, fromY);
+		assertEquals(newMoveList.size(), 2);
 	}
 
 	@Test
@@ -44,8 +45,8 @@ public class KnightMoveTest {
 		int toY = 7;
 		
 		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-		List<State> newStateList = knightPiece.generateAllMove(midState, toX, toY);
-		assertEquals(newStateList.size(), 2);
+		List<Move> newMoveList = knightPiece.generateAllMove(midState, toX, toY);
+		assertEquals(newMoveList.size(), 2);
 	}
 	
 
@@ -63,8 +64,8 @@ public class KnightMoveTest {
 		int toYObstacle = 8;
 		
 		midState = UserMove.movePiece(midState, fromXObstacle, fromYObstacle, toXObstacle, toYObstacle);
-		List<State> newStateList = knightPiece.generateAllMove(midState, toX, toY);
-		assertEquals(newStateList.size(), 1);
+		List<Move> newMoveList = knightPiece.generateAllMove(midState, toX, toY);
+		assertEquals(newMoveList.size(), 1);
 	}
 	
 	

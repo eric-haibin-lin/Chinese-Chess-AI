@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.linhaibin.chess.KingPiece;
+import com.linhaibin.chess.Move;
 import com.linhaibin.chess.PondPiece;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
@@ -32,8 +33,8 @@ public class PondMoveTest {
 	public void testGenerateAllSimple() {
 		int fromX = 0;
 		int fromY = 6;
-		List<State> newStateList = pondPiece.generateAllMove(state, fromX, fromY);
-		assertEquals(newStateList.size(), 1);
+		List<Move> newMoveList = pondPiece.generateAllMove(state, fromX, fromY);
+		assertEquals(newMoveList.size(), 1);
 	}
 
 	@Test
@@ -44,8 +45,8 @@ public class PondMoveTest {
 		int toY = 4;
 		
 		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-		List<State> newStateList = pondPiece.generateAllMove(midState, toX, toY);
-		assertEquals(newStateList.size(), 2);
+		List<Move> newMoveList = pondPiece.generateAllMove(midState, toX, toY);
+		assertEquals(newMoveList.size(), 2);
 	}
 
 	@Test
@@ -56,8 +57,8 @@ public class PondMoveTest {
 		int toY = 4;
 		
 		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-		List<State> newStateList = pondPiece.generateAllMove(midState, toX, toY);
-		assertEquals(newStateList.size(), 3);
+		List<Move> newMoveList = pondPiece.generateAllMove(midState, toX, toY);
+		assertEquals(newMoveList.size(), 3);
 	}
 	
 

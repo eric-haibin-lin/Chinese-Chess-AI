@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class State implements Cloneable{
 	
@@ -68,11 +67,11 @@ public class State implements Cloneable{
 	private static final String coordinateXString = "y \\ x\t0\t1\t2\t3\t4\t5\t6\t7\t8\t\n";
 	public static Hashtable<Integer, Boolean> stateListHashtable;
 	public static List<Piece> initStateList = new ArrayList<Piece>();
-	public static ConcurrentHashMap<Integer, Piece> initPieceList = new ConcurrentHashMap<Integer, Piece>();
+	public static PieceMap<Integer, Piece> initPieceList = new PieceMap<Integer, Piece>(PieceFactory.getPiece(0, 10, 10));
 	public static boolean PRINT_NUM = true;
 	
 	List<Piece> stateList;
-	ConcurrentHashMap<Integer, Piece> pieceList;
+	PieceMap<Integer, Piece> pieceList;
 	private int value;
 	
 	
@@ -84,7 +83,7 @@ public class State implements Cloneable{
 					int i = iterator.next();
 					Piece piece = PieceFactory.getPiece(i,x,y);
 					initStateList.add(piece);
-					if (i != 0) initPieceList.put(i, piece);
+					if (i != 0) initPieceList.put(piece.getK(), piece);
 				}
 			}
 		}
@@ -104,7 +103,7 @@ public class State implements Cloneable{
 		return this.stateList;
 	}
 	
-	public ConcurrentHashMap<Integer, Piece> getPieceList(){
+	public PieceMap<Integer, Piece> getPieceList(){
 		return this.pieceList;
 	}
 	
@@ -146,7 +145,7 @@ public class State implements Cloneable{
 		this.stateList = stateList;
 	}
 	
-	private void setPieceList(ConcurrentHashMap<Integer, Piece> pieceList){
+	private void setPieceList(PieceMap<Integer, Piece> pieceList){
 		this.pieceList = pieceList;
 	}
 	
@@ -171,11 +170,32 @@ public class State implements Cloneable{
 		return(buffer.toString());
 	}
 	
-	private ConcurrentHashMap<Integer, Piece> clonePieceList(){
-		ConcurrentHashMap<Integer, Piece> list = new ConcurrentHashMap<Integer, Piece>();
+	public String toString(PieceMap<Integer, Piece> pieceList){
+		StringBuffer buffer = new StringBuffer(); 
+		buffer.append(coordinateXString);
+		buffer.append(riverString);
+		
+		for (int y = 0; y <= 9; y++){			
+			buffer.append(String.valueOf(y) + " ||\t");
+			for (int x = 0; x <= 8; x++){
+				int k = Utility.getOneDimention(x, y);
+				Piece piece = pieceList.get(k);
+				String pieceString;
+				if (State.PRINT_NUM) pieceString = String.valueOf(piece.getNumber());
+				else pieceString = piece.toString();
+				buffer.append(pieceString);
+				buffer.append("\t");
+			}
+			buffer.append((y == 4) ? ("\n" + riverString) : "\n");
+		}
+		return(buffer.toString());
+	}
+	
+	private PieceMap<Integer, Piece> clonePieceList(){
+		PieceMap<Integer, Piece> list = new PieceMap<Integer, Piece>(PieceFactory.getPiece(0, 10, 10));
 		Collection<Piece> pieces = pieceList.values();
 		for(Piece piece : pieces){
-			list.put(piece.getNumber(), (Piece) piece.clone());
+			list.put(piece.getK(), (Piece) piece.clone());
 		}
 		return list;	
 	}
@@ -196,18 +216,20 @@ public class State implements Cloneable{
 		return returnState;
 	}
 	
-	public List<State> generateAllState(int side){
-		List<State> childStates = new ArrayList<State>();
+	public List<Move> generateAllMoves(int side){
+		List<Move> childMoves = new ArrayList<Move>();
 		Collection<Piece> pieces = pieceList.values();
 		Iterator<Piece> it = pieces.iterator();
 		
 	    while (it.hasNext()) {
 	        Piece piece = (Piece) it.next();
 	        if (piece.getSide() == side){
-	        	List<State> newStates = piece.generateAllMove(this, piece.getX(), piece.getY()); 
-	        	childStates.addAll(newStates);
+	        	List<Move> newStates = piece.generateAllMove(this, piece.getX(), piece.getY()); 
+	        	
+	        	childMoves.addAll(newStates);
 	        }
 	    }
-		return childStates;	
+		return childMoves;	
 	}
+
 }

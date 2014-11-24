@@ -36,33 +36,28 @@ public class RookPiece extends AbstractPiece implements Piece {
 	}
 	
 	@Override
-	public List<State> generateAllMove(State state, int fromX, int fromY) {
-		List<State> newStateList = new ArrayList<State>();
-		List<Piece> stateList = state.getStateList();
+	public List<Move> generateAllMove(State state, int fromX, int fromY) {
+		List<Move> newMoveList = new ArrayList<Move>();
+		PieceMap<Integer, Piece> pieceList = state.getPieceList();
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		for (int i = 0; i<4; i++){
 			for (int j = 1; j<=10; j++){
 				int toX = fromX + moveDirection.get(i).x * j;
 				int toY = fromY + moveDirection.get(i).y * j;
 				int toK = Utility.getOneDimention(toX, toY);
-				if (!Utility.isOnBoard(toX, toY))	break;
-				int fromSide = stateList.get(fromK).getSide();
-				int toSide = stateList.get(toK).getSide();
+				if (!isOnBoard(toX, toY))	break;
+				int fromSide = pieceList.get(fromK).getSide();
+				int toSide = pieceList.get(toK).getSide();
 				if (fromSide != toSide){
-					State newState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-					if (RookPiece.DEBUG_PRINT){
-						Utility.debug(i);
-						Utility.debug(newState.toString());
-						Utility.debug("\n");
-					}
-					newStateList.add(newState);
+					Move newMove = new Move(fromX, fromY, toX, toY);
+					newMoveList.add(newMove);
 					if (toSide != Game.EMPTY_SPACE) break;
 				}
 				else break;
 			}
 			
 		}
-		return newStateList;	
+		return newMoveList;	
 	}
 	
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){

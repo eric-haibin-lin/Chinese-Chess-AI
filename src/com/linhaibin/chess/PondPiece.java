@@ -61,31 +61,25 @@ public class PondPiece extends AbstractPiece implements Piece {
 	}
 	
 	@Override
-	public List<State> generateAllMove(State state, int fromX, int fromY) {
-		List<State> newStateList = new ArrayList<State>();
-		List<Piece> stateList = state.getStateList();
+	public List<Move> generateAllMove(State state, int fromX, int fromY) {
+		List<Move> newMoveList = new ArrayList<Move>();
+		PieceMap<Integer, Piece> pieceList = state.getPieceList();
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		for (int i = 0; i<4; i++){
 			int toX = fromX + moveDirection.get(i).x;
 			int toY = fromY + moveDirection.get(i).y;
 			if (this.getSide() == Game.USER_TURN && moveDirection.get(i).y == 1) continue;
 			if (this.getSide() == Game.COMP_TURN && moveDirection.get(i).y == -1) continue;
-			if (!Utility.isOnBoard(toX, toY))	continue;
+			if (!isOnBoard(toX, toY))	continue;
 			int toK = Utility.getOneDimention(toX, toY);
-			int fromSide = stateList.get(fromK).getSide();
-			int toSide = stateList.get(toK).getSide();
+			int fromSide = pieceList.get(fromK).getSide();
+			int toSide = pieceList.get(toK).getSide();
 			if (checkLegalPosition(toK) && (fromSide != toSide)){
-				State newState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-				if (PondPiece.DEBUG_PRINT){
-					//Legal move
-					Utility.debug(i);
-					Utility.debug(newState.toString());
-					Utility.debug("\n");
-				}
-				newStateList.add(newState);
+				Move newMove = new Move(fromX, fromY, toX, toY);
+				newMoveList.add(newMove);
 			}	
 		}
-		return newStateList;	
+		return newMoveList;	
 	}
 	
 	private boolean checkLegalPosition(int toK){

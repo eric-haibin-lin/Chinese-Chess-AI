@@ -21,7 +21,7 @@ public class CloningTest {
 	}
 
 	@Test
-	public void test() {
+	public void testCloining() {
 		int fromX = 3;
 		int fromY = 9;
 		int toX = 4;
@@ -31,5 +31,4 @@ public class CloningTest {
 		String after = (state.toString());
 		assertEquals(before, after);
 	}
-
 }

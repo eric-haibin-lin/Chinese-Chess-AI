@@ -1,5 +1,6 @@
 package com.linhaibin.chess;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,14 +21,14 @@ public class MinMaxSearch {
 			return state;
 		}
 		
-		List<State> stateList = state.generateAllState(side);
-		Iterator<State> it = stateList.iterator();
+		List<Move> moveList = state.generateAllMoves(side);
+		Iterator<Move> it = moveList.iterator();
 		
 		State minState = null;
 		Integer value = Integer.MAX_VALUE;
 		
 		while(it.hasNext()){
-			State newState = it.next();
+			State newState = UserMove.movePiece(state, it.next());
 			int newValue = maxSearch(newState, depth-1, changeSide(side)).getValue();
 			if (newValue < value){
 				minState = newState;
@@ -43,14 +44,14 @@ public class MinMaxSearch {
 			state.evaluateValue();
 			return state;
 		}
-		List<State> stateList = state.generateAllState(side);
-		Iterator<State> it = stateList.iterator();
+		List<Move> moveList = state.generateAllMoves(side);
+		Iterator<Move> it = moveList.iterator();
 		
 		State maxState = null;
 		Integer value = Integer.MIN_VALUE;
 		
 		while(it.hasNext()){
-			State newState = it.next();
+			State newState = UserMove.movePiece(state, it.next());
 			int newValue = minSearch(newState, depth-1, changeSide(side)).getValue();
 			if (newValue > value){
 				maxState = newState;
