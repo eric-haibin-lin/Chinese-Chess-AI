@@ -51,15 +51,15 @@ public class KingPiece extends AbstractPiece implements Piece {
 	@Override
 	public List<Move> generateAllMove(State state, int fromX, int fromY) {
 		List<Move> newMoveList = new ArrayList<Move>();
-		List<Piece> stateList = state.getStateList();
+		PieceMap<Integer, Piece> pieceList = state.getPieceList();
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		for (int i = 0; i<4; i++){
 			int toX = fromX + moveDirection.get(i).x;
 			int toY = fromY + moveDirection.get(i).y;
 			if (!isOnBoard(toX, toY))	continue;
 			int toK = Utility.getOneDimention(toX, toY);
-			int fromSide = stateList.get(fromK).getSide();
-			int toSide = stateList.get(toK).getSide();
+			int fromSide = pieceList.get(fromK).getSide();
+			int toSide = pieceList.get(toK).getSide();
 			if (LegalPosition.get(toK).equals(1) && (fromSide != toSide)){
 				Move newMove = new Move(fromX, fromY, toX, toY);
 				newMoveList.add(newMove);

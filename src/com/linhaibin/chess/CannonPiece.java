@@ -38,7 +38,7 @@ public class CannonPiece extends AbstractPiece implements Piece {
 	@Override
 	public List<Move> generateAllMove(State state, int fromX, int fromY) {
 		List<Move> newMoveList = new ArrayList<Move>();
-		List<Piece> stateList = state.getStateList();
+		PieceMap<Integer, Piece> pieceList = state.getPieceList();
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		for (int i = 0; i<4; i++){
 			boolean hasObstacle = false;
@@ -47,8 +47,8 @@ public class CannonPiece extends AbstractPiece implements Piece {
 				int toY = fromY + moveDirection.get(i).y * j;
 				int toK = Utility.getOneDimention(toX, toY);
 				if (!isOnBoard(toX, toY))	break;
-				int fromSide = stateList.get(fromK).getSide();
-				int toSide = stateList.get(toK).getSide();
+				int fromSide = pieceList.get(fromK).getSide();
+				int toSide = pieceList.get(toK).getSide();
 				if (!hasObstacle){
 					if (toSide == Game.EMPTY_SPACE) {
 						Move newMove = new Move(fromX, fromY, toX, toY);
