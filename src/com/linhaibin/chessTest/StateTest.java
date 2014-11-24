@@ -3,7 +3,6 @@ package com.linhaibin.chessTest;
 import static org.junit.Assert.*;
 
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,8 +11,10 @@ import org.junit.Test;
 import com.linhaibin.chess.Game;
 import com.linhaibin.chess.Move;
 import com.linhaibin.chess.Piece;
+import com.linhaibin.chess.PieceMap;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
+import com.linhaibin.chess.Utility;
 
 public class StateTest {
 
@@ -31,11 +32,6 @@ public class StateTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
-	@Test
-	public void test() {
-		assertEquals(initStateString, State.initStateList.toString());
-	}
 	
 	@Test
 	public void testPieceList() {
@@ -44,7 +40,7 @@ public class StateTest {
 		int toX = 2;
 		int toY = 7;
 		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-		ConcurrentHashMap<Integer, Piece> pieceList = midState.getPieceList();
+		PieceMap<Integer, Piece> pieceList = midState.getPieceList();
 		int sizeBefore = pieceList.size();
 		
 		int toXSuicide = 3;
@@ -55,6 +51,39 @@ public class StateTest {
 		int sizeAfter = pieceList.size();
 		
 		assertEquals(sizeBefore, sizeAfter + 1);
+	}
+	
+	@Test
+	public void testPieceListSimple() {
+		int fromX = 1;
+		int fromY = 9;
+		int toX = 2;
+		int toY = 7;
+		
+		PieceMap<Integer, Piece> pieceListBefore = state.getPieceList();
+		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		PieceMap<Integer, Piece> pieceListAfter = midState.getPieceList();
+		
+		Piece piece1 = pieceListBefore.get(Utility.getOneDimention(fromX, fromY)); 
+		Piece piece2 = pieceListAfter.get(Utility.getOneDimention(fromX, fromY));
+		Utility.d(midState);
+		assert(piece1.getNumber() != piece2.getNumber());
+	}
+	
+	
+	@Test
+	public void testPieceListPrint() {
+		String stringBefore = state.toString(state.getPieceList());
+		int fromX = 1;
+		int fromY = 9;
+		int toX = 2;
+		int toY = 7;
+		
+		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		String stringAfter = midState.toString(midState.getPieceList());
+
+		assert(!stringBefore.equals(stringAfter));
+		
 	}
 	
 	@Test

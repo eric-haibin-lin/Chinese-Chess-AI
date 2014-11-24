@@ -170,6 +170,27 @@ public class State implements Cloneable{
 		return(buffer.toString());
 	}
 	
+	public String toString(PieceMap<Integer, Piece> pieceList){
+		StringBuffer buffer = new StringBuffer(); 
+		buffer.append(coordinateXString);
+		buffer.append(riverString);
+		
+		for (int y = 0; y <= 9; y++){			
+			buffer.append(String.valueOf(y) + " ||\t");
+			for (int x = 0; x <= 8; x++){
+				int k = Utility.getOneDimention(x, y);
+				Piece piece = pieceList.get(k);
+				String pieceString;
+				if (State.PRINT_NUM) pieceString = String.valueOf(piece.getNumber());
+				else pieceString = piece.toString();
+				buffer.append(pieceString);
+				buffer.append("\t");
+			}
+			buffer.append((y == 4) ? ("\n" + riverString) : "\n");
+		}
+		return(buffer.toString());
+	}
+	
 	private PieceMap<Integer, Piece> clonePieceList(){
 		PieceMap<Integer, Piece> list = new PieceMap<Integer, Piece>(PieceFactory.getPiece(0, 10, 10));
 		Collection<Piece> pieces = pieceList.values();

@@ -27,8 +27,9 @@ public class UserMove{
 			pieceFrom.setPosition(toX, toY);
 			stateList.set(toK, pieceFrom);			
 			stateList.set(fromK, PieceFactory.getPiece(0, fromX, fromY));
-			pieceList.replace(pieceFrom.getK(), pieceFrom);
-			pieceList.remove(pieceTo.getK());
+			
+			pieceList.remove(pieceFrom.getK());
+			pieceList.put(pieceTo.getK(), pieceFrom);
 			
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
