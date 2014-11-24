@@ -60,7 +60,7 @@ public class AdvisorPiece extends AbstractPiece implements Piece {
 		for (int i = 0; i<4; i++){
 			int toX = fromX + moveDirection.get(i).x;
 			int toY = fromY + moveDirection.get(i).y;
-			if (Utility.isOnBoard(toX, toY)){
+			if (isOnBoard(toX, toY)){
 				int toK = Utility.getOneDimention(toX, toY);
 				int fromSide = stateList.get(fromK).getSide();
 				int toSide = stateList.get(toK).getSide();

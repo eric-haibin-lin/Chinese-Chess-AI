@@ -45,7 +45,7 @@ public class RookPiece extends AbstractPiece implements Piece {
 				int toX = fromX + moveDirection.get(i).x * j;
 				int toY = fromY + moveDirection.get(i).y * j;
 				int toK = Utility.getOneDimention(toX, toY);
-				if (!Utility.isOnBoard(toX, toY))	break;
+				if (!isOnBoard(toX, toY))	break;
 				int fromSide = stateList.get(fromK).getSide();
 				int toSide = stateList.get(toK).getSide();
 				if (fromSide != toSide){

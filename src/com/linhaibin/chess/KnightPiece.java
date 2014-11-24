@@ -49,7 +49,7 @@ public class KnightPiece extends AbstractPiece implements Piece {
 		for (int i = 0; i<8; i++){
 			int toX = fromX + moveDirection.get(i).x;
 			int toY = fromY + moveDirection.get(i).y;
-			if (!Utility.isOnBoard(toX, toY))	continue;
+			if (!isOnBoard(toX, toY))	continue;
 			int obstacleX = fromX + moveDirection.get(i).x / 2;
 			int obstacleY = fromY + moveDirection.get(i).y / 2;
 			if (!stateList.get(Utility.getOneDimention(obstacleX, obstacleY)).getClass().equals(EmptyPiece.class)) 	continue;

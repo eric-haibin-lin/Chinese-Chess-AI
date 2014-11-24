@@ -18,10 +18,6 @@ public class Utility {
 		return x + y * 9;
 	}
 	
-	public static boolean isOnBoard(int x, int y){
-		return (x <= 8 && x >= 0 && y <= 9 && y >= 0);
-	}
-	
 	public static int distanceSquare(int x1, int y1, int x2, int y2){
 		return (x1-x2)*(x1-x2)+(y1-y2)*(y1-y2);
 	}

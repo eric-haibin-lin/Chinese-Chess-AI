@@ -70,7 +70,7 @@ public class PondPiece extends AbstractPiece implements Piece {
 			int toY = fromY + moveDirection.get(i).y;
 			if (this.getSide() == Game.USER_TURN && moveDirection.get(i).y == 1) continue;
 			if (this.getSide() == Game.COMP_TURN && moveDirection.get(i).y == -1) continue;
-			if (!Utility.isOnBoard(toX, toY))	continue;
+			if (!isOnBoard(toX, toY))	continue;
 			int toK = Utility.getOneDimention(toX, toY);
 			int fromSide = stateList.get(fromK).getSide();
 			int toSide = stateList.get(toK).getSide();
