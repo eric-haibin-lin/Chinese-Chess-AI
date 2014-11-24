@@ -211,4 +211,16 @@ public class State implements Cloneable{
 	    }
 		return childMoves;	
 	}
+	
+	public List<State> generateAllState(int side){
+		List<Move> moveList = this.generateAllMoves(side);
+		List<State> stateList = new ArrayList<State>();
+		Iterator<Move> it = moveList.iterator();
+		while (it.hasNext()) {
+	        Move move = (Move) it.next();
+	        stateList.add(UserMove.movePiece(this, move));
+	    }
+		return stateList;
+		
+	}
 }

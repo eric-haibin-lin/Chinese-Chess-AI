@@ -9,6 +9,10 @@ public class UserMove{
 	public UserMove() {
 	}
 
+	public static State movePiece(State state, Move move) {
+		return movePiece(state,  move.fromX, move.fromY, move.toX, move.toY);
+	}
+	
 	public static State movePiece(State state, int fromX, int fromY, int toX, int toY) {
 		State newState = null;
 		try {
