@@ -1,8 +1,5 @@
 package com.linhaibin.chess;
 
-import java.util.Hashtable;
-import java.util.List;
-
 public class UserMove{
 
 	public UserMove() {
@@ -17,18 +14,14 @@ public class UserMove{
 		try {
 			newState = (State) state.clone();
 			
-			List<Piece> stateList = newState.getStateList();
 			PieceMap<Integer, Piece> pieceList = newState.getPieceList();
 			
 			int fromK = Utility.getOneDimention(fromX, fromY);
 			int toK = Utility.getOneDimention(toX, toY);
-			Piece pieceFrom = (Piece) stateList.get(fromK).clone();
+			Piece pieceFrom = (Piece) pieceList.get(fromK).clone();
 
 			pieceList.remove(pieceFrom.getK());
-			stateList.set(fromK, PieceFactory.getPiece(0, fromX, fromY));
-			
-			pieceFrom.setPosition(toX, toY);
-			stateList.set(toK, pieceFrom);			
+			pieceFrom.setPosition(toX, toY);	
 			pieceList.put(toK, pieceFrom);
 			
 		} catch (CloneNotSupportedException e) {
@@ -38,20 +31,17 @@ public class UserMove{
 	}
 	
 	public static boolean movePieceLegal(State state, int fromX, int fromY, int toX, int toY) {
-		List<Piece> stateList = state.getStateList();
 		PieceMap<Integer, Piece> pieceList = state.getPieceList();
 		
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		int toK = Utility.getOneDimention(toX, toY);
-		Piece pieceFrom = stateList.get(fromK);
+		Piece pieceFrom = (Piece) pieceList.get(fromK).clone();
 
 		if (pieceFrom.isLegalMove(state, fromX, fromY, toX, toY)){
-			Piece pieceTo = stateList.get(toK);
+			pieceList.remove(pieceFrom.getK());
 			pieceFrom.setPosition(toX, toY);
-			stateList.set(toK, pieceFrom);
-			pieceList.replace(pieceFrom.getNumber(), pieceFrom);
-			stateList.set(fromK, PieceFactory.getPiece(0, fromX, fromY));
-			pieceList.remove(pieceTo.getNumber());
+			pieceList.put(toK, pieceFrom);
+			
 			return true;
 		}
 		else return false;

@@ -53,7 +53,7 @@ public class Game {
 	private int handleUserMove(State state, int fromX, int fromY, int toX, int toY){
 		int moveStatus = MoveError.NO_ERROR;
 		int fromK = Utility.getOneDimention(fromX, fromY);
-		Piece piece = currentState.getStateList().get(fromK);
+		Piece piece = currentState.getPieceList().get(fromK);
 		StringBuffer buffer = new StringBuffer();
 		if (piece.getNumber() == 0){
 			moveStatus = MoveError.WRONG_PIECE;
@@ -76,7 +76,6 @@ public class Game {
 				"P => Pawn\t\n" 
 		);
 	}
-
 	
 	//For 9*10 board
 	void printStatePlain(State state){

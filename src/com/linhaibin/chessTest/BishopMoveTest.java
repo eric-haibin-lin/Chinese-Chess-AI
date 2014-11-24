@@ -7,13 +7,10 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.linhaibin.chess.AdvisorPiece;
 import com.linhaibin.chess.BishopPiece;
 import com.linhaibin.chess.Move;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
-import com.linhaibin.chess.Utility;
 
 public class BishopMoveTest {
 	private State state;
