@@ -90,6 +90,7 @@ public class AbstractPiece implements Cloneable{
 	public void setPosition(int x, int y ){
 		this.x = x;
 		this.y = y;
+		this.k = Utility.getOneDimention(x, y);
 	}
 	
 	public static boolean isOnBoard(int x, int y){

@@ -64,6 +64,7 @@ public class BishopMoveTest {
 		int toYObstacle = 8;
 		
 		midState = UserMove.movePiece(midState, fromXObstacle, fromYObstacle, toXObstacle, toYObstacle);
+		
 		List<Move> newMoveList = bishopPiece.generateAllMove(midState, toX, toY);
 		assertEquals(newMoveList.size(), 2);
 	}

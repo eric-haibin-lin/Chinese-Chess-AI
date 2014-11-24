@@ -16,20 +16,20 @@ public class UserMove{
 		State newState = null;
 		try {
 			newState = (State) state.clone();
+			
 			List<Piece> stateList = newState.getStateList();
 			PieceMap<Integer, Piece> pieceList = newState.getPieceList();
 			
 			int fromK = Utility.getOneDimention(fromX, fromY);
 			int toK = Utility.getOneDimention(toX, toY);
-			Piece pieceFrom = stateList.get(fromK);
-			Piece pieceTo = stateList.get(toK);
+			Piece pieceFrom = (Piece) stateList.get(fromK).clone();
 
-			pieceFrom.setPosition(toX, toY);
-			stateList.set(toK, pieceFrom);			
+			pieceList.remove(pieceFrom.getK());
 			stateList.set(fromK, PieceFactory.getPiece(0, fromX, fromY));
 			
-			pieceList.remove(pieceFrom.getK());
-			pieceList.put(pieceTo.getK(), pieceFrom);
+			pieceFrom.setPosition(toX, toY);
+			stateList.set(toK, pieceFrom);			
+			pieceList.put(toK, pieceFrom);
 			
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
