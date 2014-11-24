@@ -51,7 +51,7 @@ public class AbstractPiece implements Cloneable{
 	}
 
 	
-	public List<State> generateAllMove(State state, int fromX, int fromY) {
+	public List<Move> generateAllMove(State state, int fromX, int fromY) {
 		return null;
 	}
 	

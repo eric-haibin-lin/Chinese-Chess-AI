@@ -36,8 +36,8 @@ public class AdvisorMoveTest {
 	public void testGenerateAllSimple() {
 		int fromX = 3;
 		int fromY = 9;
-		List<State> newStateList = advisorPiece.generateAllMove(state, fromX, fromY);
-		assertEquals(newStateList.size(), 1);
+		List<Move> newMoveList = advisorPiece.generateAllMove(state, fromX, fromY);
+		assertEquals(newMoveList.size(), 1);
 	}
 
 	@Test
@@ -48,8 +48,8 @@ public class AdvisorMoveTest {
 		int toY = 8;
 		
 		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-		List<State> newStateList = advisorPiece.generateAllMove(midState, toX, toY);
-		assertEquals(newStateList.size(), 3);
+		List<Move> newMoveList = advisorPiece.generateAllMove(midState, toX, toY);
+		assertEquals(newMoveList.size(), 3);
 	}
 	
 

@@ -196,18 +196,19 @@ public class State implements Cloneable{
 		return returnState;
 	}
 	
-	public List<State> generateAllState(int side){
-		List<State> childStates = new ArrayList<State>();
+	public List<Move> generateAllMoves(int side){
+		List<Move> childMoves = new ArrayList<Move>();
 		Collection<Piece> pieces = pieceList.values();
 		Iterator<Piece> it = pieces.iterator();
 		
 	    while (it.hasNext()) {
 	        Piece piece = (Piece) it.next();
 	        if (piece.getSide() == side){
-	        	List<State> newStates = piece.generateAllMove(this, piece.getX(), piece.getY()); 
-	        	childStates.addAll(newStates);
+	        	List<Move> newStates = piece.generateAllMove(this, piece.getX(), piece.getY()); 
+	        	
+	        	childMoves.addAll(newStates);
 	        }
 	    }
-		return childStates;	
+		return childMoves;	
 	}
 }

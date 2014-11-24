@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.linhaibin.chess.Game;
 import com.linhaibin.chess.KnightPiece;
+import com.linhaibin.chess.Move;
 import com.linhaibin.chess.RookPiece;
 import com.linhaibin.chess.MinMaxSearch;
 import com.linhaibin.chess.State;
@@ -33,8 +34,8 @@ public class RookMoveTest {
 	public void testGenerateAllSimple() {
 		int fromX = 0;
 		int fromY = 9;
-		List<State> newStateList = rookPiece.generateAllMove(state, fromX, fromY);
-		assertEquals(newStateList.size(), 2);
+		List<Move> newMoveList = rookPiece.generateAllMove(state, fromX, fromY);
+		assertEquals(newMoveList.size(), 2);
 	}
 
 	@Test
@@ -45,8 +46,8 @@ public class RookMoveTest {
 		int toY = 8;
 		
 		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-		List<State> newStateList = rookPiece.generateAllMove(midState, toX, toY);
-		assertEquals(newStateList.size(), 10);
+		List<Move> newMoveList = rookPiece.generateAllMove(midState, toX, toY);
+		assertEquals(newMoveList.size(), 10);
 	}
 
 	@Test

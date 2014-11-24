@@ -42,8 +42,8 @@ public class KnightPiece extends AbstractPiece implements Piece {
 		return value;
 	}
 	@Override
-	public List<State> generateAllMove(State state, int fromX, int fromY) {
-		List<State> newStateList = new ArrayList<State>();
+	public List<Move> generateAllMove(State state, int fromX, int fromY) {
+		List<Move> newMoveList = new ArrayList<Move>();
 		List<Piece> stateList = state.getStateList();
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		for (int i = 0; i<8; i++){
@@ -57,17 +57,11 @@ public class KnightPiece extends AbstractPiece implements Piece {
 			int fromSide = stateList.get(fromK).getSide();
 			int toSide = stateList.get(toK).getSide();
 			if (fromSide != toSide){
-				State newState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-				if (KnightPiece.DEBUG_PRINT){
-					//Legal move
-					Utility.debug(i);
-					Utility.debug(newState.toString());
-					Utility.debug("\n");
-				}
-				newStateList.add(newState);
+				Move newMove = new Move(fromX, fromY, toX, toY);
+				newMoveList.add(newMove);
 			}	
 		}
-		return newStateList;	
+		return newMoveList;	
 	}
 	
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){

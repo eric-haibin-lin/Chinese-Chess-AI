@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.linhaibin.chess.AdvisorPiece;
 import com.linhaibin.chess.BishopPiece;
+import com.linhaibin.chess.Move;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
 import com.linhaibin.chess.Utility;
@@ -32,8 +33,8 @@ public class BishopMoveTest {
 	public void testGenerateAllSimple() {
 		int fromX = 2;
 		int fromY = 9;
-		List<State> newStateList = bishopPiece.generateAllMove(state, fromX, fromY);
-		assertEquals(newStateList.size(), 2);
+		List<Move> newMoveList = bishopPiece.generateAllMove(state, fromX, fromY);
+		assertEquals(newMoveList.size(), 2);
 	}
 
 	@Test
@@ -44,8 +45,8 @@ public class BishopMoveTest {
 		int toY = 7;
 		
 		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-		List<State> newStateList = bishopPiece.generateAllMove(midState, toX, toY);
-		assertEquals(newStateList.size(), 3);
+		List<Move> newMoveList = bishopPiece.generateAllMove(midState, toX, toY);
+		assertEquals(newMoveList.size(), 3);
 	}
 	
 
@@ -63,8 +64,8 @@ public class BishopMoveTest {
 		int toYObstacle = 8;
 		
 		midState = UserMove.movePiece(midState, fromXObstacle, fromYObstacle, toXObstacle, toYObstacle);
-		List<State> newStateList = bishopPiece.generateAllMove(midState, toX, toY);
-		assertEquals(newStateList.size(), 2);
+		List<Move> newMoveList = bishopPiece.generateAllMove(midState, toX, toY);
+		assertEquals(newMoveList.size(), 2);
 	}
 
 	@Test

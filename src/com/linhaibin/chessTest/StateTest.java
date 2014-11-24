@@ -2,7 +2,6 @@ package com.linhaibin.chessTest;
 
 import static org.junit.Assert.*;
 
-import java.util.Hashtable;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -11,10 +10,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.linhaibin.chess.Game;
+import com.linhaibin.chess.Move;
 import com.linhaibin.chess.Piece;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
-import com.linhaibin.chess.Utility;
 
 public class StateTest {
 
@@ -60,9 +59,9 @@ public class StateTest {
 	
 	@Test
 	public void testGenerateAllState(){
-		List<State> childStates = state.generateAllState(Game.COMP_TURN);
-		List<State> anotherChildStates = anotherState.generateAllState(Game.USER_TURN);
-		assertEquals(childStates.size(), anotherChildStates.size());
-		assertEquals(childStates.size(), 44);
+		List<Move> newMoveList = state.generateAllMoves(Game.COMP_TURN);
+		List<Move> anotherMoveList = anotherState.generateAllMoves(Game.USER_TURN);
+		assertEquals(newMoveList.size(), anotherMoveList.size());
+		assertEquals(anotherMoveList.size(), 44);
 	}
 }

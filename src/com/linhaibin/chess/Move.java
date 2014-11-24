@@ -1,9 +1,16 @@
 package com.linhaibin.chess;
 
-import java.util.List;
+public class Move {
 
-interface Move {
+	public int fromX;
+	public int fromY;
+	public int toX;
+	public int toY;
 	
-	public List<State> generateAllMove(State state, int fromX, int fromY);
-	
+	public Move(int fromX, int fromY, int toX, int toY){
+		this.fromX = fromX;
+		this.fromY = fromY;
+		this.toX = toX;
+		this.toY = toY;
+	}
 }

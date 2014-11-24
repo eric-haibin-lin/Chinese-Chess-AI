@@ -36,8 +36,8 @@ public class CannonPiece extends AbstractPiece implements Piece {
 	}
 	
 	@Override
-	public List<State> generateAllMove(State state, int fromX, int fromY) {
-		List<State> newStateList = new ArrayList<State>();
+	public List<Move> generateAllMove(State state, int fromX, int fromY) {
+		List<Move> newMoveList = new ArrayList<Move>();
 		List<Piece> stateList = state.getStateList();
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		for (int i = 0; i<4; i++){
@@ -51,13 +51,8 @@ public class CannonPiece extends AbstractPiece implements Piece {
 				int toSide = stateList.get(toK).getSide();
 				if (!hasObstacle){
 					if (toSide == Game.EMPTY_SPACE) {
-						State newState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-						newStateList.add(newState);
-						if (CannonPiece.DEBUG_PRINT){
-							Utility.debug(i);
-							Utility.debug(newState.toString());
-							Utility.debug("\n");
-						}
+						Move newMove = new Move(fromX, fromY, toX, toY);
+						newMoveList.add(newMove);
 					}
 					else hasObstacle = true;
 				}
@@ -65,20 +60,15 @@ public class CannonPiece extends AbstractPiece implements Piece {
 					if (fromSide == toSide) break;
 					else if (toSide == Game.EMPTY_SPACE) continue;
 					else {
-						State newState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-						newStateList.add(newState);
-						if (CannonPiece.DEBUG_PRINT){
-							Utility.debug(i);
-							Utility.debug(newState.toString());
-							Utility.debug("\n");
-						}
+						Move newMove = new Move(fromX, fromY, toX, toY);
+						newMoveList.add(newMove);
 						break;
 					}
 					
 				}
 			}
 		}
-		return newStateList;	
+		return newMoveList;	
 	}
 
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
