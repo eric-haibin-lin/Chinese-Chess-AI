@@ -8,7 +8,14 @@ public class MoveError {
 	public static final int WRONG_PIECE = -1;
 	public static final int ILLEGAL_MOVE = -2;
 	public static void printError(int error){
-		System.out.println("Error: " + error);
+		switch(error){
+		case WRONG_PIECE: 
+			System.out.println("Error: You moved a wrong piece. Please try again.");
+			break;
+		case ILLEGAL_MOVE:
+			System.out.println("Error: You moved a piece illegally. Please make sure you follow the rule.");
+			break;
+		}
 	}
 }
 

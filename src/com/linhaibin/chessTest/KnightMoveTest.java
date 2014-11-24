@@ -68,67 +68,67 @@ public class KnightMoveTest {
 	}
 	
 	
-//
-//	@Test
-//	public void testIllegalMoveSuicide() {
-//		int fromX = 1;
-//		int fromY = 9;
-//		int toX = 2;
-//		int toY = 7;
-//		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-//		
-//		int toXSuicide = 3;
-//		int toYSuicide = 9;
-//		assertEquals(false,knightPiece.isLegalMove(midState, toX, toY, toXSuicide, toYSuicide));
-//	}
-//
-//	
-//	@Test
-//	public void testLegalMove() {
-//		int fromX = 1;
-//		int fromY = 9;
-//		int toX = 2;
-//		int toY = 7;
-//		assertEquals(true,knightPiece.isLegalMove(state, fromX, fromY, toX, toY));
-//	}
-//	
-//	@Test
-//	public void testIllegalMove() {
-//		int fromX = 1;
-//		int fromY = 9;
-//		int toX = 1;
-//		int toY = 8;
-//		
-//		assertEquals(false,knightPiece.isLegalMove(state, fromX, fromY, toX, toY));
-//	}
-//	
-//	
-//	@Test
-//	public void testIllegalMoveAcross() {
-//		int fromX = 1;
-//		int fromY = 9;
-//		int toX = 3;
-//		int toY = 10;
-//		
-//		assertEquals(false,knightPiece.isLegalMove(state, fromX, fromY, toX, toY));
-//	}
-//	
-//	@Test
-//	public void testIllegalMoveWithObstacle() {
-//		int fromXObstacle = 2;
-//		int fromYObstacle = 9;
-//		int toXObstacle = 1;
-//		int toYObstacle = 8;
-//		
-//		State midState = UserMove.movePiece(state, fromXObstacle, fromYObstacle, toXObstacle, toYObstacle);
-//		
-//		int fromX = 1;
-//		int fromY = 9;
-//		int toX = 2;
-//		int toY = 7;
-//		
-//		assertEquals(false,knightPiece.isLegalMove(midState, fromX, fromY, toX, toY));
-//	}
+
+	@Test
+	public void testIllegalMoveSuicide() {
+		int fromX = 1;
+		int fromY = 9;
+		int toX = 2;
+		int toY = 7;
+		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		
+		int toXSuicide = 3;
+		int toYSuicide = 9;
+		assertEquals(false,knightPiece.isLegalMove(midState, toX, toY, toXSuicide, toYSuicide));
+	}
+
+	
+	@Test
+	public void testLegalMove() {
+		int fromX = 1;
+		int fromY = 9;
+		int toX = 2;
+		int toY = 7;
+		assertEquals(true,knightPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	@Test
+	public void testIllegalMove() {
+		int fromX = 1;
+		int fromY = 9;
+		int toX = 1;
+		int toY = 8;
+		
+		assertEquals(false,knightPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	
+	@Test
+	public void testIllegalMoveAcross() {
+		int fromX = 1;
+		int fromY = 9;
+		int toX = 3;
+		int toY = 10;
+		
+		assertEquals(false,knightPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	@Test
+	public void testIllegalMoveWithObstacle() {
+		int fromXObstacle = 2;
+		int fromYObstacle = 9;
+		int toXObstacle = 1;
+		int toYObstacle = 8;
+		
+		State midState = UserMove.movePiece(state, fromXObstacle, fromYObstacle, toXObstacle, toYObstacle);
+		
+		int fromX = 1;
+		int fromY = 9;
+		int toX = 2;
+		int toY = 7;
+		
+		assertEquals(false,knightPiece.isLegalMove(midState, fromX, fromY, toX, toY));
+	}
 	
 	
 	@Test
