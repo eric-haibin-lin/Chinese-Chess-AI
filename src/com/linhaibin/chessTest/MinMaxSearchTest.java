@@ -30,6 +30,13 @@ public class MinMaxSearchTest {
 		assert(true);
 	}
 	
+	@Test
+	public void testLevelFour() {
+		State chosenState = (MinMaxSearch.minMaxSearch(state, 4));
+		System.out.println(chosenState);
+		assert(true);
+	}
+	
 
 	@Test
 	public void testLevelThreeKill() {

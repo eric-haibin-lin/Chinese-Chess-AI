@@ -22,14 +22,14 @@ public class AlphaBetaSearch {
 		
 		int newAlpha = alpha;
 		int newBeta = beta;
-		List<State> stateList = state.generateAllState(side);
-		Iterator<State> it = stateList.iterator();
+		List<Move> moveList = state.generateAllMoves(side);
+		Iterator<Move> it = moveList.iterator();
 		
 		State minState = new State();
 		minState.setValue(newBeta);
 		
 		while(it.hasNext()){
-			State newState = it.next();
+			State newState = UserMove.movePiece(state, it.next());
 			int newValue = maxSearch(newState, depth-1, changeSide(side), newAlpha, newBeta).getValue();
 			if (newValue < newBeta){
 				minState = newState;
@@ -51,14 +51,14 @@ public class AlphaBetaSearch {
 		
 		int newAlpha = alpha;
 		int newBeta = beta;
-		List<State> stateList = state.generateAllState(side);
-		Iterator<State> it = stateList.iterator();
+		List<Move> moveList = state.generateAllMoves(side);
+		Iterator<Move> it = moveList.iterator();
 		
 		State maxState = new State();
 		maxState.setValue(newAlpha);
 		
 		while(it.hasNext()){
-			State newState = it.next();
+			State newState = UserMove.movePiece(state, it.next());
 			int newValue = minSearch(newState, depth-1, changeSide(side), newAlpha, newBeta).getValue();			
 			if (newValue > newAlpha){
 				maxState = newState;

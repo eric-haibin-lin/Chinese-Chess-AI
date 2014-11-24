@@ -48,6 +48,13 @@ public class AlphaBetaSearchTest {
 		System.out.println(chosenState);
 		assert(true);
 	}
+	
+	@Test
+	public void testLevelFive() {
+		State chosenState = (AlphaBetaSearch.doSearch(state, 5));
+		System.out.println(chosenState);
+		assert(true);
+	}
 
 	@Test
 	public void testLevelThreeKill() {
