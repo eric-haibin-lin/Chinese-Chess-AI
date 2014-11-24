@@ -33,6 +33,24 @@ public class UserMove{
 		return newState;
 	}
 	
-	
+	public static boolean movePieceLegal(State state, int fromX, int fromY, int toX, int toY) {
+		List<Piece> stateList = state.getStateList();
+		ConcurrentHashMap<Integer, Piece> pieceList = state.getPieceList();
+		
+		int fromK = Utility.getOneDimention(fromX, fromY);
+		int toK = Utility.getOneDimention(toX, toY);
+		Piece pieceFrom = stateList.get(fromK);
+
+		if (pieceFrom.isLegalMove(state, fromX, fromY, toX, toY)){
+			Piece pieceTo = stateList.get(toK);
+			pieceFrom.setPosition(toX, toY);
+			stateList.set(toK, pieceFrom);
+			pieceList.replace(pieceFrom.getNumber(), pieceFrom);
+			stateList.set(fromK, PieceFactory.getPiece(0, fromX, fromY));
+			pieceList.remove(pieceTo.getNumber());
+			return true;
+		}
+		else return false;
+	}
 
 }

@@ -77,8 +77,14 @@ public class KnightPiece extends AbstractPiece implements Piece {
 
 		if (Utility.distanceSquare(fromX, fromY, toX, toY) != 5) return false;
 		
-		int obstacleX = (fromX + toX) / 2;
-		int obstacleY = (fromY + toY) / 2;
+		int obstacleXDistance = Utility.abs(toX-fromX); 
+		int obstacleX = obstacleXDistance == 2 ? (fromX + toX) / 2 : fromX;
+		int obstacleYDistance = Utility.abs(toY-fromY); 
+		int obstacleY = obstacleYDistance == 2 ? (fromY + toY) / 2 : fromY;
+		
+//		Utility.d(obstacleX);
+//		Utility.d(obstacleY);
+//		Utility.d(stateList.get(Utility.getOneDimention(obstacleX, obstacleY)).getClass().equals(EmptyPiece.class));
 		if (!stateList.get(Utility.getOneDimention(obstacleX, obstacleY)).getClass().equals(EmptyPiece.class)) 	return false;
 		
 		else return true;

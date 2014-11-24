@@ -30,7 +30,6 @@ public class Search {
 			State newState = it.next();
 			int newValue = maxSearch(newState, depth-1, changeSide(side)).getValue();
 			if (newValue < value){
-//				System.out.println("Min search update value:" + String.valueOf(newValue));
 				minState = newState;
 				value = newValue;
 				minState.setValue(newValue);

@@ -43,23 +43,15 @@ public class Game {
 			Utility.debug(moveStatus);
 			if (moveStatus == MoveError.NO_ERROR){
 				this.printStatePlain(this.currentState);
+				currentState = (Search.minMaxSearch(currentState, 3));
 			}
-				//system move piece
-				//success:
-				//	printState
-				//	generateAllMove
-				//	selectBestMove
-				//	doMove
-				//	printState
-			else this.printError(moveStatus);
-			//fail:
-			//	printError
-			// 	continue
+
+			else MoveError.printError(moveStatus);
 		}
 	}
 	
 	private int handleUserMove(State state, int fromX, int fromY, int toX, int toY){
-		int moveStatus = 0;
+		int moveStatus = MoveError.NO_ERROR;
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		Piece piece = currentState.getStateList().get(fromK);
 		StringBuffer buffer = new StringBuffer();
@@ -68,8 +60,8 @@ public class Game {
 		} else if (piece.getSide() != Game.USER_TURN){
 			moveStatus = MoveError.WRONG_PIECE;
 		} else buffer.append(piece.toString());
-//		state = 
-				UserMove.movePiece(state, fromX, fromY, toX, toY);
+		if (!UserMove.movePieceLegal(state, fromX, fromY, toX, toY))
+			moveStatus = MoveError.ILLEGAL_MOVE;
 		return moveStatus;
 	}
 	
@@ -94,8 +86,5 @@ public class Game {
 	void printStatePlain(State state){
 		System.out.println(state.toString());
 	}
-	
-	void printError(int error){
-		System.out.println("Error: " + error);
-	}
+
 }
