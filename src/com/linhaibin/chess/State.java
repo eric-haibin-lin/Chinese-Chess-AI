@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class State implements Cloneable{
 	
@@ -68,11 +67,11 @@ public class State implements Cloneable{
 	private static final String coordinateXString = "y \\ x\t0\t1\t2\t3\t4\t5\t6\t7\t8\t\n";
 	public static Hashtable<Integer, Boolean> stateListHashtable;
 	public static List<Piece> initStateList = new ArrayList<Piece>();
-	public static ConcurrentHashMap<Integer, Piece> initPieceList = new ConcurrentHashMap<Integer, Piece>();
+	public static PieceMap<Integer, Piece> initPieceList = new PieceMap<Integer, Piece>(PieceFactory.getPiece(0, 10, 10));
 	public static boolean PRINT_NUM = true;
 	
 	List<Piece> stateList;
-	ConcurrentHashMap<Integer, Piece> pieceList;
+	PieceMap<Integer, Piece> pieceList;
 	private int value;
 	
 	
@@ -104,7 +103,7 @@ public class State implements Cloneable{
 		return this.stateList;
 	}
 	
-	public ConcurrentHashMap<Integer, Piece> getPieceList(){
+	public PieceMap<Integer, Piece> getPieceList(){
 		return this.pieceList;
 	}
 	
@@ -146,7 +145,7 @@ public class State implements Cloneable{
 		this.stateList = stateList;
 	}
 	
-	private void setPieceList(ConcurrentHashMap<Integer, Piece> pieceList){
+	private void setPieceList(PieceMap<Integer, Piece> pieceList){
 		this.pieceList = pieceList;
 	}
 	
@@ -171,8 +170,8 @@ public class State implements Cloneable{
 		return(buffer.toString());
 	}
 	
-	private ConcurrentHashMap<Integer, Piece> clonePieceList(){
-		ConcurrentHashMap<Integer, Piece> list = new ConcurrentHashMap<Integer, Piece>();
+	private PieceMap<Integer, Piece> clonePieceList(){
+		PieceMap<Integer, Piece> list = new PieceMap<Integer, Piece>(PieceFactory.getPiece(0, 10, 10));
 		Collection<Piece> pieces = pieceList.values();
 		for(Piece piece : pieces){
 			list.put(piece.getK(), (Piece) piece.clone());

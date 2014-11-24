@@ -2,7 +2,6 @@ package com.linhaibin.chess;
 
 import java.util.Hashtable;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class UserMove{
 
@@ -18,7 +17,7 @@ public class UserMove{
 		try {
 			newState = (State) state.clone();
 			List<Piece> stateList = newState.getStateList();
-			ConcurrentHashMap<Integer, Piece> pieceList = newState.getPieceList();
+			PieceMap<Integer, Piece> pieceList = newState.getPieceList();
 			
 			int fromK = Utility.getOneDimention(fromX, fromY);
 			int toK = Utility.getOneDimention(toX, toY);
@@ -39,7 +38,7 @@ public class UserMove{
 	
 	public static boolean movePieceLegal(State state, int fromX, int fromY, int toX, int toY) {
 		List<Piece> stateList = state.getStateList();
-		ConcurrentHashMap<Integer, Piece> pieceList = state.getPieceList();
+		PieceMap<Integer, Piece> pieceList = state.getPieceList();
 		
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		int toK = Utility.getOneDimention(toX, toY);
