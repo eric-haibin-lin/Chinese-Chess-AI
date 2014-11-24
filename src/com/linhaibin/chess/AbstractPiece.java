@@ -16,9 +16,7 @@ public class AbstractPiece implements Cloneable{
 	
 	public AbstractPiece(int number){
 		this.number = number;
-		if (number == 0) this.side = Game.EMPTY_SPACE;
-		else if ((number & Game.USER_TURN) == Game.USER_TURN)	this.side = Game.USER_TURN; 
-		else	this.side = Game.COMP_TURN;
+		setSide();
 	}
 	
 	public AbstractPiece(int number, int x, int y) {
@@ -26,15 +24,18 @@ public class AbstractPiece implements Cloneable{
 		this.x = x;
 		this.y = y;
 		this.k = Utility.getOneDimention(x, y);
-		if (number == 0) this.side = Game.EMPTY_SPACE;
-		else if ((number & Game.USER_TURN) == Game.USER_TURN)	this.side = Game.USER_TURN; 
-		else	this.side = Game.COMP_TURN;
+		setSide();
 	}
 	
 	public int getNumber() {
 		return this.number;
 	}
 
+	private void setSide(){
+		if (number == 0) this.side = Game.EMPTY_SPACE;
+		else if ((number & Game.USER_TURN) == Game.USER_TURN)	this.side = Game.USER_TURN; 
+		else	this.side = Game.COMP_TURN;
+	}
 	
 	public int getSide() {
 		return this.side;
