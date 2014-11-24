@@ -43,7 +43,7 @@ public class Game {
 			Utility.debug(moveStatus);
 			if (moveStatus == MoveError.NO_ERROR){
 				this.printStatePlain(this.currentState);
-				currentState = (Search.minMaxSearch(currentState, 3));
+				currentState = (MinMaxSearch.minMaxSearch(currentState, 3));
 			}
 
 			else MoveError.printError(moveStatus);

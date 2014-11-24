@@ -3,7 +3,7 @@ package com.linhaibin.chess;
 import java.util.Iterator;
 import java.util.List;
 
-public class Search {
+public class MinMaxSearch {
 
 	public static State minMaxSearch(State state, int depth){
 		return minSearch(state, depth, Game.COMP_TURN);
@@ -14,7 +14,7 @@ public class Search {
 		else return Game.COMP_TURN;
 	}
 	
-	public static State minSearch(State state, int depth, int side){
+	private static State minSearch(State state, int depth, int side){
 		if (depth <= 0) {
 			state.evaluateValue();
 			return state;
@@ -38,7 +38,7 @@ public class Search {
 		return minState;
 	}
 	
-	public static State maxSearch(State state, int depth, int side){
+	private static State maxSearch(State state, int depth, int side){
 		if (depth <= 0) {
 			state.evaluateValue();
 			return state;

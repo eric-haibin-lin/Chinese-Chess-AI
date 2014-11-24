@@ -7,11 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.linhaibin.chess.Game;
-import com.linhaibin.chess.Search;
+import com.linhaibin.chess.MinMaxSearch;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
 
-public class SearchTest {
+public class MinMaxSearchTest {
 
 	State state;
 	@Before
@@ -25,7 +25,7 @@ public class SearchTest {
 
 	@Test
 	public void testLevelOne() {
-		State chosenState = (Search.minMaxSearch(state, 1));
+		State chosenState = (MinMaxSearch.minMaxSearch(state, 1));
 		System.out.println(chosenState);
 		assert(true);
 	}
@@ -40,7 +40,7 @@ public class SearchTest {
 		int toY = 3;
 		
 		midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
-		State chosenState = (Search.minMaxSearch(midState, 3));
+		State chosenState = (MinMaxSearch.minMaxSearch(midState, 3));
 		System.out.println(chosenState);
 		assert(true);
 	}

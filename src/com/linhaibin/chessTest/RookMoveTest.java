@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.linhaibin.chess.Game;
 import com.linhaibin.chess.KnightPiece;
 import com.linhaibin.chess.RookPiece;
-import com.linhaibin.chess.Search;
+import com.linhaibin.chess.MinMaxSearch;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
 
