@@ -67,7 +67,7 @@ public class KnightPiece extends AbstractPiece implements Piece {
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
 		if (!AbstractPiece.isLegalBasic(state, fromX, fromY, toX, toY)) return false;
 		
-		List<Piece> stateList = state.getStateList();
+		PieceMap<Integer, Piece> pieceList = state.getPieceList();
 
 		if (Utility.distanceSquare(fromX, fromY, toX, toY) != 5) return false;
 		
@@ -75,11 +75,7 @@ public class KnightPiece extends AbstractPiece implements Piece {
 		int obstacleX = obstacleXDistance == 2 ? (fromX + toX) / 2 : fromX;
 		int obstacleYDistance = Utility.abs(toY-fromY); 
 		int obstacleY = obstacleYDistance == 2 ? (fromY + toY) / 2 : fromY;
-		
-//		Utility.d(obstacleX);
-//		Utility.d(obstacleY);
-//		Utility.d(stateList.get(Utility.getOneDimention(obstacleX, obstacleY)).getClass().equals(EmptyPiece.class));
-		if (!stateList.get(Utility.getOneDimention(obstacleX, obstacleY)).getClass().equals(EmptyPiece.class)) 	return false;
+		if (!pieceList.get(Utility.getOneDimention(obstacleX, obstacleY)).getClass().equals(EmptyPiece.class)) 	return false;
 		
 		else return true;
 	}

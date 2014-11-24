@@ -75,17 +75,17 @@ public class CannonPiece extends AbstractPiece implements Piece {
 		
 		if (!AbstractPiece.isLegalBasic(state, fromX, fromY, toX, toY)) return false;
 		int toK = Utility.getOneDimention(toX, toY);
-		List<Piece> stateList = state.getStateList();
+		PieceMap<Integer, Piece> pieceList = state.getPieceList();
 		
 		if (fromX == toX){
 			int lowerBound = (fromY > toY ? toY : fromY)+1;
 			int upperBound = (fromY > toY ? fromY : toY)-1;
 			int obstacleCount = 0;
 			for (int i = lowerBound; i <= upperBound; i++){
-				if (!stateList.get(Utility.getOneDimention(fromX, i)).getClass().equals(EmptyPiece.class))	obstacleCount++;
+				if (!pieceList.get(Utility.getOneDimention(fromX, i)).getClass().equals(EmptyPiece.class))	obstacleCount++;
 			}
-			if (obstacleCount == 1 && ((!stateList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
-			else if (obstacleCount == 0 && ((stateList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
+			if (obstacleCount == 1 && ((!pieceList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
+			else if (obstacleCount == 0 && ((pieceList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
 			else return false;
 		}
 		else if (fromY == toY){
@@ -93,10 +93,10 @@ public class CannonPiece extends AbstractPiece implements Piece {
 			int upperBound = (fromX > toX ? fromX : toX)-1;
 			int obstacleCount = 0;
 			for (int i = lowerBound; i <= upperBound; i++){
-				if (!stateList.get(Utility.getOneDimention(i, fromY)).getClass().equals(EmptyPiece.class))	obstacleCount++;
+				if (!pieceList.get(Utility.getOneDimention(i, fromY)).getClass().equals(EmptyPiece.class))	obstacleCount++;
 			}
-			if (obstacleCount == 1 && ((!stateList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
-			else if (obstacleCount == 0 && ((stateList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
+			if (obstacleCount == 1 && ((!pieceList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
+			else if (obstacleCount == 0 && ((pieceList.get(toK).getClass().equals(EmptyPiece.class)))) return true;
 			else return false;
 		} else return false;
 	}

@@ -74,9 +74,9 @@ public class AbstractPiece implements Cloneable{
 	}
 	
 	private static boolean suicide(State state, int fromX, int fromY, int toX, int toY){
-		List<Piece> stateList = state.getStateList();
-		Piece sourcePiece = stateList.get(Utility.getOneDimention(fromX, fromY));
-		Piece targetPiece = stateList.get(Utility.getOneDimention(toX, toY));
+		PieceMap<Integer, Piece> pieceList = state.getPieceList();
+		Piece sourcePiece = pieceList.get(Utility.getOneDimention(fromX, fromY));
+		Piece targetPiece = pieceList.get(Utility.getOneDimention(toX, toY));
 		if (sourcePiece.getSide() == targetPiece.getSide()) return true;
 		else return false;
 	}
@@ -84,7 +84,7 @@ public class AbstractPiece implements Cloneable{
 	protected static boolean isLegalBasic(State state, int fromX, int fromY, int toX, int toY){
 		if (!isOnBoard(toX, toY)) return false;
 		if (suicide(state, fromX, fromY, toX, toY)) return false;
-		if (Utility.standStill(fromX, fromY, toX, toY)) return false;
+		if (standStill(fromX, fromY, toX, toY)) return false;
 		else return true;
 	}
 	public void setPosition(int x, int y ){
@@ -93,7 +93,12 @@ public class AbstractPiece implements Cloneable{
 		this.k = Utility.getOneDimention(x, y);
 	}
 	
-	public static boolean isOnBoard(int x, int y){
+	private static boolean standStill(int x1, int y1, int x2, int y2){
+		if (x1== x2 && y1 == y2) return true;
+		else return false;
+	}
+	
+	protected static boolean isOnBoard(int x, int y){
 		return (x <= 8 && x >= 0 && y <= 9 && y >= 0);
 	}
 	

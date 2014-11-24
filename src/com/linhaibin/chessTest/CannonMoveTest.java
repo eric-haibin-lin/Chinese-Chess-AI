@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import com.linhaibin.chess.CannonPiece;
 import com.linhaibin.chess.Move;
-import com.linhaibin.chess.RookPiece;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.UserMove;
 

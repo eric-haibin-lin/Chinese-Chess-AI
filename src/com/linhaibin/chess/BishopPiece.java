@@ -76,7 +76,7 @@ public class BishopPiece extends AbstractPiece implements Piece {
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
 		if (!AbstractPiece.isLegalBasic(state, fromX, fromY, toX, toY)) return false;
 		
-		List<Piece> stateList = state.getStateList();
+		PieceMap<Integer, Piece> pieceList = state.getPieceList();
 		int toK = Utility.getOneDimention(toX, toY);
 
 		if (!LegalPosition.get(toK).equals(1)) return false;
@@ -84,7 +84,7 @@ public class BishopPiece extends AbstractPiece implements Piece {
 		
 		int obstacleX = (fromX + toX) / 2;
 		int obstacleY = (fromY + toY) / 2;
-		if (!stateList.get(Utility.getOneDimention(obstacleX, obstacleY)).getClass().equals(EmptyPiece.class)) 	return false;
+		if (!pieceList.get(Utility.getOneDimention(obstacleX, obstacleY)).getClass().equals(EmptyPiece.class)) 	return false;
 		
 		else return true;
 	}

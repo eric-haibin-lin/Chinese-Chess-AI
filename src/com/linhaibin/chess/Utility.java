@@ -22,11 +22,6 @@ public class Utility {
 		return (x1-x2)*(x1-x2)+(y1-y2)*(y1-y2);
 	}
 	
-	public static boolean standStill(int x1, int y1, int x2, int y2){
-		if (x1== x2 && y1 == y2) return true;
-		else return false;
-	}
-	
 	public static int abs(int x){
 		if (x > 0) return x ;
 		else return -x;

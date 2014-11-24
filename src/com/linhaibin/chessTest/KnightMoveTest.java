@@ -8,7 +8,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.linhaibin.chess.BishopPiece;
 import com.linhaibin.chess.KnightPiece;
 import com.linhaibin.chess.Move;
 import com.linhaibin.chess.State;
