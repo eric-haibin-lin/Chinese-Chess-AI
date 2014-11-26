@@ -65,9 +65,8 @@ public class State implements Cloneable{
 	
 	private static final String riverString = "\t==================================================================\n";
 	private static final String coordinateXString = "y \\ x\t0\t1\t2\t3\t4\t5\t6\t7\t8\t\n";
-	public static Hashtable<Integer, Boolean> stateListHashtable;
 	public static PieceMap<Integer, Piece> initPieceList = new PieceMap<Integer, Piece>(PieceFactory.getPiece(0, 10, 10));
-	public static boolean PRINT_NUM = true;
+	public static boolean PRINT_NUM = false;
 	
 	PieceMap<Integer, Piece> pieceList;
 	private int value;
