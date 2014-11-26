@@ -14,7 +14,7 @@ public class EmptyPiece extends AbstractPiece implements Piece {
 	
 	@Override
 	public String toString(){
-		return "0";
+		return "+";
 	}
 	
 	@Override
