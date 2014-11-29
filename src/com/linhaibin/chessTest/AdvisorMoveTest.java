@@ -54,12 +54,42 @@ public class AdvisorMoveTest {
 	
 
 	@Test
+	public void testGenerateNumberAllMidNonCloning() {
+		int fromX = 3;
+		int fromY = 9;
+		int toX = 4;
+		int toY = 8;
+		
+		PieceMove.movePieceNonCloning(state, fromX, fromY, toX, toY);
+		List<Move> newMoveList = advisorPiece.generateAllMove(state, toX, toY);
+		assertEquals(newMoveList.size(), 3);
+		PieceMove.movePieceNonCloning(state, toX, toY,fromX, fromY);
+	}
+	
+
+	@Test
 	public void testLegalMove() {
 		int fromX = 3;
 		int fromY = 9;
 		int toX = 4;
 		int toY = 8;
 		assertEquals(true,advisorPiece.isLegalMove(state, fromX, fromY, toX, toY));
+	}
+	
+	@Test
+	public void testLegalMoveSuicideNonCloning() {
+		int fromX = 3;
+		int fromY = 9;
+		int toX = 4;
+		int toY = 8;
+		
+		PieceMove.movePieceNonCloning(state, fromX, fromY, toX, toY);
+		int toXFinal = 5;
+		int toYFinal = 9;
+		
+		assertEquals(false,advisorPiece.isLegalMove(state, toX, toY, toXFinal, toYFinal));
+		PieceMove.movePieceNonCloning(state, toX, toY, fromX, fromY);
+		
 	}
 	
 	@Test

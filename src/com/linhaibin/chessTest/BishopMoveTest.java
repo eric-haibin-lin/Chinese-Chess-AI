@@ -46,6 +46,18 @@ public class BishopMoveTest {
 		assertEquals(newMoveList.size(), 3);
 	}
 	
+	@Test
+	public void testGenerateNumberAllMidNonCloning() {
+		int fromX = 2;
+		int fromY = 9;
+		int toX = 4;
+		int toY = 7;
+		
+		PieceMove.movePieceNonCloning(state, fromX, fromY, toX, toY);
+		List<Move> newMoveList = bishopPiece.generateAllMove(state, toX, toY);
+		assertEquals(newMoveList.size(), 3);
+		PieceMove.movePieceNonCloning(state, toX, toY, fromX, fromY);
+	}
 
 	@Test
 	public void testSimpleObstacle() {
@@ -65,6 +77,30 @@ public class BishopMoveTest {
 		List<Move> newMoveList = bishopPiece.generateAllMove(midState, toX, toY);
 		assertEquals(newMoveList.size(), 2);
 	}
+	
+
+	@Test
+	public void testSimpleObstacleNonCloning() {
+		int fromX = 2;
+		int fromY = 9;
+		int toX = 4;
+		int toY = 7;
+		PieceMove.movePieceNonCloning(state, fromX, fromY, toX, toY);
+		
+		int fromXObstacle = 3;
+		int fromYObstacle = 9;
+		int toXObstacle = 3;
+		int toYObstacle = 8;
+		
+		PieceMove.movePieceNonCloning(state, fromXObstacle, fromYObstacle, toXObstacle, toYObstacle);
+		
+		List<Move> newMoveList = bishopPiece.generateAllMove(state, toX, toY);
+		assertEquals(newMoveList.size(), 2);
+		
+		PieceMove.movePieceNonCloning(state, toXObstacle, toYObstacle,fromXObstacle, fromYObstacle);
+		PieceMove.movePieceNonCloning(state, toX, toY, fromX, fromY);
+	}
+	
 
 	@Test
 	public void testIllegalMoveSuicide() {
