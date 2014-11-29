@@ -63,8 +63,8 @@ public class State implements Cloneable{
 			23,21,19,17,16,18,20,22,24);
 	
 	
-	private static final String riverString = "\t==================================================================\n";
-	private static final String coordinateXString = "y \\ x\t0\t1\t2\t3\t4\t5\t6\t7\t8   x / y\n";
+	private static final String riverString = "    ==============================\n";
+	private static final String coordinateXString = "y\\x   0  1  2  3  4  5  6  7  8    x/y\n";
 	public static PieceMap<Integer, Piece> initPieceList = new PieceMap<Integer, Piece>(PieceFactory.getPiece(0, 10, 10));
 	public static boolean PRINT_NUM = false;
 	
@@ -148,7 +148,7 @@ public class State implements Cloneable{
 		for (int y = 0; y <= 9; y++){			
 			buffer.append(String.valueOf(y) + " ||");
 			for (int x = 0; x <= 8; x++){
-				buffer.append("\t");
+				buffer.append("  ");
 				int k = Utility.getOneDimention(x, y);
 				Piece piece = pieceList.get(k);
 				String pieceString;
@@ -159,6 +159,8 @@ public class State implements Cloneable{
 			buffer.append("   || "+ String.valueOf(y));
 			buffer.append((y == 4) ? ("\n" + riverString) : "\n");
 		}
+		buffer.append(riverString);
+		buffer.append(coordinateXString);
 		return(buffer.toString());
 	}
 	
