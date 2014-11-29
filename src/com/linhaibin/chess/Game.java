@@ -60,7 +60,7 @@ public class Game {
 		} else if (piece.getSide() != Game.USER_TURN){
 			moveStatus = MoveError.WRONG_PIECE;
 		} else buffer.append(piece.toString());
-		if (!UserMove.movePieceLegal(state, fromX, fromY, toX, toY))
+		if (!PieceMove.movePieceLegal(state, fromX, fromY, toX, toY))
 			moveStatus = MoveError.ILLEGAL_MOVE;
 		return moveStatus;
 	}

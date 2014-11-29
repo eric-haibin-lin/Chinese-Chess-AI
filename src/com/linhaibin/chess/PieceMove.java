@@ -1,8 +1,8 @@
 package com.linhaibin.chess;
 
-public class UserMove{
+public class PieceMove{
 
-	public UserMove() {
+	public PieceMove() {
 	}
 
 	public static State movePiece(State state, Move move) {

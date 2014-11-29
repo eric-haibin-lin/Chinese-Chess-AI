@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.linhaibin.chess.Move;
 import com.linhaibin.chess.RookPiece;
 import com.linhaibin.chess.State;
-import com.linhaibin.chess.UserMove;
+import com.linhaibin.chess.PieceMove;
 
 public class RookMoveTest {
 
@@ -42,7 +42,7 @@ public class RookMoveTest {
 		int toX = 0;
 		int toY = 8;
 		
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		List<Move> newMoveList = rookPiece.generateAllMove(midState, toX, toY);
 		assertEquals(newMoveList.size(), 10);
 	}

@@ -9,7 +9,7 @@ import org.junit.Test;
 import com.linhaibin.chess.Game;
 import com.linhaibin.chess.MinMaxSearch;
 import com.linhaibin.chess.State;
-import com.linhaibin.chess.UserMove;
+import com.linhaibin.chess.PieceMove;
 
 public class MinMaxSearchTest {
 
@@ -46,7 +46,7 @@ public class MinMaxSearchTest {
 		int toX = 4;
 		int toY = 3;
 		
-		midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		State chosenState = (MinMaxSearch.minMaxSearch(midState, 3));
 		System.out.println(chosenState);
 		assert(true);

@@ -12,7 +12,7 @@ import com.linhaibin.chess.KingPiece;
 import com.linhaibin.chess.Move;
 import com.linhaibin.chess.PondPiece;
 import com.linhaibin.chess.State;
-import com.linhaibin.chess.UserMove;
+import com.linhaibin.chess.PieceMove;
 
 public class PondMoveTest {
 
@@ -44,7 +44,7 @@ public class PondMoveTest {
 		int toX = 0;
 		int toY = 4;
 		
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		List<Move> newMoveList = pondPiece.generateAllMove(midState, toX, toY);
 		assertEquals(newMoveList.size(), 2);
 	}
@@ -56,7 +56,7 @@ public class PondMoveTest {
 		int toX = 2;
 		int toY = 4;
 		
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		List<Move> newMoveList = pondPiece.generateAllMove(midState, toX, toY);
 		assertEquals(newMoveList.size(), 3);
 	}
@@ -78,7 +78,7 @@ public class PondMoveTest {
 		int toX = 2;
 		int toY = 5;
 		
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		int fromXFinal = 2;
 		int fromYFinal = 6;
 		

@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.linhaibin.chess.KnightPiece;
 import com.linhaibin.chess.Move;
 import com.linhaibin.chess.State;
-import com.linhaibin.chess.UserMove;
+import com.linhaibin.chess.PieceMove;
 
 public class KnightMoveTest {
 
@@ -43,7 +43,7 @@ public class KnightMoveTest {
 		int toX = 2;
 		int toY = 7;
 		
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		List<Move> newMoveList = knightPiece.generateAllMove(midState, toX, toY);
 		assertEquals(newMoveList.size(), 2);
 	}
@@ -55,14 +55,14 @@ public class KnightMoveTest {
 		int fromY = 9;
 		int toX = 2;
 		int toY = 7;
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		
 		int fromXObstacle = 2;
 		int fromYObstacle = 9;
 		int toXObstacle = 2;
 		int toYObstacle = 8;
 		
-		midState = UserMove.movePiece(midState, fromXObstacle, fromYObstacle, toXObstacle, toYObstacle);
+		midState = PieceMove.movePiece(midState, fromXObstacle, fromYObstacle, toXObstacle, toYObstacle);
 		List<Move> newMoveList = knightPiece.generateAllMove(midState, toX, toY);
 		assertEquals(newMoveList.size(), 1);
 	}
@@ -75,7 +75,7 @@ public class KnightMoveTest {
 		int fromY = 9;
 		int toX = 2;
 		int toY = 7;
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		
 		int toXSuicide = 3;
 		int toYSuicide = 9;
@@ -120,7 +120,7 @@ public class KnightMoveTest {
 		int toXObstacle = 1;
 		int toYObstacle = 8;
 		
-		State midState = UserMove.movePiece(state, fromXObstacle, fromYObstacle, toXObstacle, toYObstacle);
+		State midState = PieceMove.movePiece(state, fromXObstacle, fromYObstacle, toXObstacle, toYObstacle);
 		
 		int fromX = 1;
 		int fromY = 9;

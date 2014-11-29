@@ -27,7 +27,7 @@ public class CloningTest {
 		int toX = 4;
 		int toY = 8;
 		String before = state.toString();
-		UserMove.movePiece(state, fromX, fromY, toX, toY);
+		PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		String after = (state.toString());
 		assertEquals(before, after);
 	}

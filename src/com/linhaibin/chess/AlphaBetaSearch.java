@@ -29,7 +29,7 @@ public class AlphaBetaSearch {
 		minState.setValue(newBeta);
 		
 		while(it.hasNext()){
-			State newState = UserMove.movePiece(state, it.next());
+			State newState = PieceMove.movePiece(state, it.next());
 			int newValue = maxSearch(newState, depth-1, changeSide(side), newAlpha, newBeta).getValue();
 			if (newValue < newBeta){
 				minState = newState;
@@ -58,7 +58,7 @@ public class AlphaBetaSearch {
 		maxState.setValue(newAlpha);
 		
 		while(it.hasNext()){
-			State newState = UserMove.movePiece(state, it.next());
+			State newState = PieceMove.movePiece(state, it.next());
 			int newValue = minSearch(newState, depth-1, changeSide(side), newAlpha, newBeta).getValue();			
 			if (newValue > newAlpha){
 				maxState = newState;

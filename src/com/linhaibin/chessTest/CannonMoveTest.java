@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.linhaibin.chess.CannonPiece;
 import com.linhaibin.chess.Move;
 import com.linhaibin.chess.State;
-import com.linhaibin.chess.UserMove;
+import com.linhaibin.chess.PieceMove;
 
 public class CannonMoveTest {
 
@@ -43,7 +43,7 @@ public class CannonMoveTest {
 		int toX = 4;
 		int toY = 7;
 
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		List<Move> newMoveList = cannonPiece.generateAllMove(midState, toX, toY);
 		assertEquals(8,newMoveList.size());
 	}
@@ -67,7 +67,7 @@ public class CannonMoveTest {
 		int toX = 1;
 		int toY = 9;
 		
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		
 		int toXFinal = 1;
 		int toYFinal = 9;

@@ -13,7 +13,7 @@ import com.linhaibin.chess.Move;
 import com.linhaibin.chess.Piece;
 import com.linhaibin.chess.PieceMap;
 import com.linhaibin.chess.State;
-import com.linhaibin.chess.UserMove;
+import com.linhaibin.chess.PieceMove;
 import com.linhaibin.chess.Utility;
 
 public class StateTest {
@@ -39,14 +39,14 @@ public class StateTest {
 		int fromY = 9;
 		int toX = 2;
 		int toY = 7;
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		PieceMap<Integer, Piece> pieceList = midState.getPieceList();
 		int sizeBefore = pieceList.size();
 		
 		int toXSuicide = 3;
 		int toYSuicide = 9;
 		
-		midState = UserMove.movePiece(midState, toX, toY, toXSuicide, toYSuicide);
+		midState = PieceMove.movePiece(midState, toX, toY, toXSuicide, toYSuicide);
 		pieceList = midState.getPieceList();
 		int sizeAfter = pieceList.size();
 		
@@ -61,7 +61,7 @@ public class StateTest {
 		int toY = 7;
 		
 		PieceMap<Integer, Piece> pieceListBefore = state.getPieceList();
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		PieceMap<Integer, Piece> pieceListAfter = midState.getPieceList();
 		
 		Piece piece1 = pieceListBefore.get(Utility.getOneDimention(fromX, fromY)); 
@@ -79,7 +79,7 @@ public class StateTest {
 		int toX = 2;
 		int toY = 7;
 		
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		String stringAfter = midState.toString(midState.getPieceList());
 
 		assert(!stringBefore.equals(stringAfter));

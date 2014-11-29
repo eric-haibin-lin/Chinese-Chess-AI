@@ -47,7 +47,7 @@ public class AdvisorMoveTest {
 		int toX = 4;
 		int toY = 8;
 		
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		List<Move> newMoveList = advisorPiece.generateAllMove(midState, toX, toY);
 		assertEquals(newMoveList.size(), 3);
 	}
@@ -69,7 +69,7 @@ public class AdvisorMoveTest {
 		int toX = 4;
 		int toY = 8;
 		
-		State midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		int toXFinal = 5;
 		int toYFinal = 9;
 		

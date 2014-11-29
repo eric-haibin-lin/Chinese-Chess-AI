@@ -27,7 +27,7 @@ public class MinMaxSearch {
 		Integer value = Integer.MAX_VALUE;
 		
 		while(it.hasNext()){
-			State newState = UserMove.movePiece(state, it.next());
+			State newState = PieceMove.movePiece(state, it.next());
 			int newValue = maxSearch(newState, depth-1, changeSide(side)).getValue();
 			if (newValue < value){
 				minState = newState;
@@ -50,7 +50,7 @@ public class MinMaxSearch {
 		Integer value = Integer.MIN_VALUE;
 		
 		while(it.hasNext()){
-			State newState = UserMove.movePiece(state, it.next());
+			State newState = PieceMove.movePiece(state, it.next());
 			int newValue = minSearch(newState, depth-1, changeSide(side)).getValue();
 			if (newValue > value){
 				maxState = newState;

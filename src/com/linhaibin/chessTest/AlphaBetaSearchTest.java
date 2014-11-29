@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import com.linhaibin.chess.AlphaBetaSearch;
 import com.linhaibin.chess.State;
-import com.linhaibin.chess.UserMove;
+import com.linhaibin.chess.PieceMove;
 
 public class AlphaBetaSearchTest {
 
@@ -61,7 +61,7 @@ public class AlphaBetaSearchTest {
 		int toX = 4;
 		int toY = 3;
 		
-		midState = UserMove.movePiece(state, fromX, fromY, toX, toY);
+		midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
 		State chosenState = (AlphaBetaSearch.doSearch(midState, 4));
 		System.out.println(chosenState);
 		assert(true);
