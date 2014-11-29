@@ -43,7 +43,7 @@ public class Game {
 			if (moveStatus == MoveError.NO_ERROR){
 				this.printStatePlain(this.currentState);
 				if (testWin(currentState))	return;
-				System.out.println("Computer's turn...");
+				System.out.println("Now it's Computer's turn... ");
 				currentState = (AlphaBetaSearch.doSearch(currentState, 4));
 			}
 
@@ -55,14 +55,13 @@ public class Game {
 		int moveStatus = MoveError.NO_ERROR;
 		int fromK = Utility.getOneDimention(fromX, fromY);
 		Piece piece = currentState.getPieceList().get(fromK);
-		StringBuffer buffer = new StringBuffer();
-		if (piece.getNumber() == 0){
+		if (piece.getSide() == Game.EMPTY_SPACE){
 			moveStatus = MoveError.WRONG_PIECE;
 		} else if (piece.getSide() != Game.USER_TURN){
 			moveStatus = MoveError.WRONG_PIECE;
-		} else buffer.append(piece.toString());
-		if (!PieceMove.movePieceLegal(state, fromX, fromY, toX, toY))
+		} else if (!PieceMove.movePieceLegal(state, fromX, fromY, toX, toY)){
 			moveStatus = MoveError.ILLEGAL_MOVE;
+		}	
 		return moveStatus;
 	}
 	

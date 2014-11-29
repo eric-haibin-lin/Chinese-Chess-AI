@@ -10,10 +10,10 @@ public class MoveError {
 	public static void printError(int error){
 		switch(error){
 		case WRONG_PIECE: 
-			System.out.println("Error: You moved a wrong piece. Please try again.");
+			System.out.println("Error: You moved a wrong piece. Please try again.\n");
 			break;
 		case ILLEGAL_MOVE:
-			System.out.println("Error: You moved a piece illegally. Please make sure you follow the rule.");
+			System.out.println("Error: You moved a piece illegally. Please make sure you follow the rule.\n");
 			break;
 		}
 	}
