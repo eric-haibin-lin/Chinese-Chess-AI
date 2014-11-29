@@ -32,7 +32,7 @@ public class PondPiece extends AbstractPiece implements Piece {
 			1,1,1,1,1,1,1,1,1,
 			1,1,1,1,1,1,1,1,1);
 	
-	private static int EXISTENCE_VALUE = 10;
+	private static int EXISTENCE_VALUE = 30;
 	private static int MOBILITY_VALUE = 2;
 	
 	@Override

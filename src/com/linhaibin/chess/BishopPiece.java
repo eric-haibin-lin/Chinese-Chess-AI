@@ -21,7 +21,7 @@ public class BishopPiece extends AbstractPiece implements Piece {
 			0,0,1,0,0,0,1,0,0);
 	
 	private static List<DirectionMove> moveDirection = Arrays.asList(new DirectionMove(-2,-2), new DirectionMove(-2,+2), new DirectionMove(+2,-2), new DirectionMove(+2,+2));
-	private static int EXISTENCE_VALUE = 20;
+	private static int EXISTENCE_VALUE = 40;
 	private static int MOBILITY_VALUE = 2;
 	
 	@Override
