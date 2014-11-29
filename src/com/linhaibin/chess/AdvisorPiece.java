@@ -22,6 +22,7 @@ public class AdvisorPiece extends AbstractPiece implements Piece {
 	
 	private static List<DirectionMove> moveDirection = Arrays.asList(new DirectionMove(-1,-1), new DirectionMove(-1,+1), new DirectionMove(+1,-1), new DirectionMove(+1,+1));
 	private static int EXISTENCE_VALUE = 20;
+	private static int MOBILITY_VALUE = 2;
 	
 	public AdvisorPiece(int number) {
 		super(number);
@@ -50,6 +51,10 @@ public class AdvisorPiece extends AbstractPiece implements Piece {
 		return value;
 	}
 
+	@Override
+	public int evaluateMobility(State state, int fromX, int fromY){
+		return generateAllMove(state, fromX, fromY).size() * MOBILITY_VALUE;
+	}
 
 	@Override
 	public List<Move> generateAllMove(State state, int fromX, int fromY) {
@@ -73,6 +78,8 @@ public class AdvisorPiece extends AbstractPiece implements Piece {
 		
 		return newMoveList;	
 	}
+	
+	
 	
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
 		

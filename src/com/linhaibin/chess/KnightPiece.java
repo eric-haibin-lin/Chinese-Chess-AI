@@ -13,6 +13,12 @@ public class KnightPiece extends AbstractPiece implements Piece {
 			new DirectionMove(+2,-1), new DirectionMove(+2,+1));
 	
 	private static int EXISTENCE_VALUE = 40;
+	private static int MOBILITY_VALUE = 5;
+	
+	@Override
+	public int evaluateMobility(State state, int fromX, int fromY){
+		return generateAllMove(state, fromX, fromY).size() * MOBILITY_VALUE;
+	}
 	
 	@Override
 	public int evaluateExistence() {

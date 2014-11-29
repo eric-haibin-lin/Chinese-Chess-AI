@@ -8,6 +8,12 @@ public class RookPiece extends AbstractPiece implements Piece {
 	private static boolean DEBUG_PRINT = false;
 	private static List<DirectionMove> moveDirection = Arrays.asList(new DirectionMove(-1,0), new DirectionMove(+1,0), new DirectionMove(0,-1), new DirectionMove(0,+1));
 	private static int EXISTENCE_VALUE = 90;
+	private static int MOBILITY_VALUE = 4;
+	
+	@Override
+	public int evaluateMobility(State state, int fromX, int fromY){
+		return generateAllMove(state, fromX, fromY).size() * MOBILITY_VALUE;
+	}
 	
 	@Override
 	public int evaluateExistence() {

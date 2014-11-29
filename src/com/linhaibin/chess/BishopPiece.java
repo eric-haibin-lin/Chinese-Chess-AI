@@ -22,7 +22,12 @@ public class BishopPiece extends AbstractPiece implements Piece {
 	
 	private static List<DirectionMove> moveDirection = Arrays.asList(new DirectionMove(-2,-2), new DirectionMove(-2,+2), new DirectionMove(+2,-2), new DirectionMove(+2,+2));
 	private static int EXISTENCE_VALUE = 20;
+	private static int MOBILITY_VALUE = 2;
 	
+	@Override
+	public int evaluateMobility(State state, int fromX, int fromY){
+		return generateAllMove(state, fromX, fromY).size() * MOBILITY_VALUE;
+	}
 	@Override
 	public int evaluateExistence() {
 		int value = (side == Game.USER_TURN) ? EXISTENCE_VALUE : (-1 * EXISTENCE_VALUE);

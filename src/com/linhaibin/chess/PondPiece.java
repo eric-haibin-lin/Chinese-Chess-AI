@@ -33,6 +33,12 @@ public class PondPiece extends AbstractPiece implements Piece {
 			1,1,1,1,1,1,1,1,1);
 	
 	private static int EXISTENCE_VALUE = 10;
+	private static int MOBILITY_VALUE = 2;
+	
+	@Override
+	public int evaluateMobility(State state, int fromX, int fromY){
+		return generateAllMove(state, fromX, fromY).size() * MOBILITY_VALUE;
+	}
 	
 	@Override
 	public int evaluateExistence() {

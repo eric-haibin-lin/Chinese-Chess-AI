@@ -226,7 +226,14 @@ public class Evaluate {
 	}
 	
 	private static int evaluateMobility(State state){
-		return 0;
+		int mobilityValue = 0;
+		Collection<Piece> pieceList = state.getPieceList().values();
+		Iterator<Piece> it = pieceList.iterator();
+		while(it.hasNext()){
+			Piece piece = it.next();
+			mobilityValue += piece.evaluateMobility(state, piece.getX(), piece.getY());
+		}
+		return mobilityValue;
 	}
 	
 }

@@ -57,6 +57,9 @@ public class AbstractPiece implements Cloneable{
 		return 0;
 	}
 
+	public int evaluateMobility(State state, int fromX, int fromY){
+		return 0;
+	}
 	
 	public List<Move> generateAllMove(State state, int fromX, int fromY) {
 		return null;
@@ -101,5 +104,6 @@ public class AbstractPiece implements Cloneable{
 	protected static boolean isOnBoard(int x, int y){
 		return (x <= 8 && x >= 0 && y <= 9 && y >= 0);
 	}
+	
 	
 }

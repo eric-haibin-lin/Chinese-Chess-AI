@@ -26,6 +26,7 @@ public class AlphaBetaSearchTest {
 		System.out.println(chosenState);
 		assert(true);
 	}
+	
 	@Test
 	public void testLevelTwo() {
 		State chosenState = (AlphaBetaSearch.doSearch(state, 2));
