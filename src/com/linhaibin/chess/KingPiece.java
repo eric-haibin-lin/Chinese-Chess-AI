@@ -71,7 +71,38 @@ public class KingPiece extends AbstractPiece implements Piece {
 				newMoveList.add(newMove);
 			}	
 		}
-		return newMoveList;	
+		if (this.getSide() == Game.USER_TURN){
+			int i;
+			for (i = 0; i<3; i++){
+				if (pieceList.get(Utility.getOneDimention(fromX, i)).getClass() == KingPiece.class)	break;
+			}
+			if (i < 3 && cleanPath(state, fromX, i+1, fromY-1)) {
+				Move newMove = new Move(fromX, fromY, fromX, i);
+				newMoveList.add(newMove);
+			}
+			else return newMoveList;
+				
+		}
+		else if (this.getSide() == Game.COMP_TURN){
+			int i;
+			for (i = 9; i>6; i--){
+				if (pieceList.get(Utility.getOneDimention(fromX, i)).getClass() == KingPiece.class)	break;
+			}
+			if (i > 6 && cleanPath(state, fromX, fromY+1, i-1)) {
+				Move newMove = new Move(fromX, fromY, fromX, i);
+				newMoveList.add(newMove);
+			}
+			else return newMoveList;
+		} 
+		return newMoveList;
+	}
+	
+	private boolean cleanPath(State state, int x, int fromY, int toY){
+		PieceMap<Integer, Piece> pieceList = state.getPieceList();
+		for(int i = fromY; i <= toY; i++){
+			if (pieceList.get(Utility.getOneDimention(x, i)).getClass() != EmptyPiece.class)	return false;
+		}
+		return true;
 	}
 	
 	public boolean isLegalMove(State state, int fromX, int fromY, int toX, int toY){
@@ -80,6 +111,12 @@ public class KingPiece extends AbstractPiece implements Piece {
 		
 		int toK = Utility.getOneDimention(toX, toY);
 		if (!LegalPosition.get(toK).equals(1)) return false;
+		if (fromX == toX && Utility.abs(fromY-toY)>4){
+			if (fromY > toY)
+				return cleanPath(state, fromX, toY+1, fromY -1);
+			else 
+				return cleanPath(state, fromX, fromY+1, toY -1);
+		}
 		if (Utility.distanceSquare(fromX, fromY, toX, toY) != 1) return false;
 		else return true;
 	}

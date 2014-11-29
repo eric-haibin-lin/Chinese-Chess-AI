@@ -89,5 +89,24 @@ public class KingMoveTest {
 		assertEquals(false,kingPiece.isLegalMove(state, fromX, fromY, toX, toY));
 	}
 	
-	
+
+	@Test
+	public void testKillKing() {
+		int fromX = 4;
+		int fromY = 6;
+		int toX = 3;
+		int toY = 6;
+		
+		State midState = PieceMove.movePiece(state, fromX, fromY, toX, toY);
+		
+		int fromX2 = 4;
+		int fromY2 = 3;
+		int toX2 = 3;
+		int toY2 = 3;
+		
+		midState = PieceMove.movePiece(midState, fromX2, fromY2, toX2, toY2);
+		
+		List<Move> newMoveList = kingPiece.generateAllMove(midState, 4, 9);
+		assertEquals(newMoveList.size(), 2);
+	}
 }
