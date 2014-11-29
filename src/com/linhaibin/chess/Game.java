@@ -43,6 +43,7 @@ public class Game {
 			if (moveStatus == MoveError.NO_ERROR){
 				this.printStatePlain(this.currentState);
 				if (testWin(currentState))	return;
+				System.out.println("Computer's turn...");
 				currentState = (AlphaBetaSearch.doSearch(currentState, 4));
 			}
 
