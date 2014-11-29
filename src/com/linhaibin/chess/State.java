@@ -3,7 +3,6 @@ package com.linhaibin.chess;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
@@ -194,6 +193,24 @@ public class State implements Cloneable{
 	        }
 	    }
 		return childMoves;	
+	}
+	
+	public int getWinner(){
+		Iterator<Piece> it = pieceList.values().iterator();
+		boolean user = false;
+		boolean computer = false;
+	    while (it.hasNext()) {
+	        Piece piece = (Piece) it.next();
+	        if (piece.getClass().equals(KingPiece.class)){
+	        	if (piece.getSide() == Game.COMP_TURN){
+		        	computer = true;
+		        }
+		        else user = true;	
+	        }
+	    }
+		if (user == false) return Game.COMP_TURN;
+		else if (computer == false) return Game.USER_TURN;
+		else return Game.EMPTY_SPACE;
 	}
 
 }

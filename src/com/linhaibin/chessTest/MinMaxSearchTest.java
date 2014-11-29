@@ -1,12 +1,9 @@
 package com.linhaibin.chessTest;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.linhaibin.chess.Game;
 import com.linhaibin.chess.MinMaxSearch;
 import com.linhaibin.chess.State;
 import com.linhaibin.chess.PieceMove;

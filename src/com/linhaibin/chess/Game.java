@@ -1,6 +1,5 @@
 package com.linhaibin.chess;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Game {
@@ -29,6 +28,7 @@ public class Game {
 		
 		while(true){
 			this.printStatePlain(this.currentState);
+			if (testWin(currentState))	return;
 			System.out.print(selectTargetString);
 			System.out.print(xyPositionString);
 			int fromX = reader.nextInt();
@@ -40,10 +40,10 @@ public class Game {
 			int toY = reader.nextInt();		
 			
 			int moveStatus = this.handleUserMove(currentState, fromX, fromY, toX, toY);
-			Utility.debug(moveStatus);
 			if (moveStatus == MoveError.NO_ERROR){
 				this.printStatePlain(this.currentState);
-				currentState = (MinMaxSearch.minMaxSearch(currentState, 3));
+				if (testWin(currentState))	return;
+				currentState = (AlphaBetaSearch.doSearch(currentState, 4));
 			}
 
 			else MoveError.printError(moveStatus);
@@ -80,6 +80,19 @@ public class Game {
 	//For 9*10 board
 	void printStatePlain(State state){
 		System.out.println(state.toString());
+	}
+	
+	private boolean testWin(State state){
+		int winner = currentState.getWinner(); 
+		if (winner == Game.COMP_TURN){
+			System.out.println("Computer Wins!");
+			return true;
+		}
+		else if (winner == Game.USER_TURN){
+			System.out.println("You Win!");
+			return true;
+		}
+		else return false;
 	}
 
 }
